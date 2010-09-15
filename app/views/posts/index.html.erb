@@ -6,10 +6,12 @@
   </tr>
   <% for post in @posts %>
     <tr>
-      <td><%=h post.description %></td>
+      <td><%= image_tag post.image.url(:small) %></td>
+      <td><%= link_to "Show", post_path(post) %> | </td>
       <td><%= link_to "Edit", edit_post_path(post) %></td>
     </tr>
   <% end %>
 </table>
 
 <p><%= link_to "New Post", new_post_path %></p>
+
