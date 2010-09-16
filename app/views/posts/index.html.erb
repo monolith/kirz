@@ -1,17 +1,12 @@
 <% title "Posts" %>
 
+<p><%= button_to "New Post", new_post_path %><br /></p>
+
 <table>
-  <tr>
-    <th>Description</th>
-  </tr>
   <% for post in @posts %>
     <tr>
-      <td><%= image_tag post.image.url(:small) %></td>
-      <td><%= link_to "Show", post_path(post) %> | </td>
-      <td><%= link_to "Edit", edit_post_path(post) %></td>
+      <td><%= link_to image_tag(post.image.url(:small)), post_path(post) %></td>
     </tr>
   <% end %>
 </table>
-
-<p><%= link_to "New Post", new_post_path %></p>
 
