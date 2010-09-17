@@ -4,12 +4,20 @@ class PostsController < ApplicationController
 
 
   def index
-    @posts = Post.all
+    @posts = Post.paginate :page => params[:page], :per_page => 12
+
+    @column = Array.new
+    number_of_columns = 3
+    number_of_columns.times { @column << Array.new }
+
+    @posts.each_with_index do | post, index |
+      @column[index%number_of_columns] << post
+    end
+
   end
 
   def show
     @post = Post.find(params[:id])
-
   end
 
   def new

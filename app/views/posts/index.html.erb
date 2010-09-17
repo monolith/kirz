@@ -1,12 +1,18 @@
 <% title "Posts" %>
 
-<p><%= button_to "New Post", new_post_path %><br /></p>
+<p><%= button_to "New Post", new_post_path, :method => :get %><br /></p>
 
 <table>
-  <% for post in @posts %>
-    <tr>
-      <td><%= link_to image_tag(post.image.url(:small)), post_path(post) %></td>
-    </tr>
-  <% end %>
-</table>
+  <tr>
+    <% @column.each do |posts| %>
+      <td valign=top>
+        <% posts.each do |post| %>
+          <%= link_to image_tag(post.image.url(:small)), post_path(post) %><br/>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+<table>
+
+<%= will_paginate @posts %>
 
