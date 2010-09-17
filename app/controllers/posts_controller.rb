@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     number_of_columns = 3
     number_of_columns.times { @column << Array.new }
 
+    # creates a multidimentional array, with each array representing a column
     @posts.each_with_index do | post, index |
       @column[index%number_of_columns] << post
     end
