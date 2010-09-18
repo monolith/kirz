@@ -1,14 +1,18 @@
 <% title "Viewing Post" %>
 
+<% if logged_in? %>
+  <table>
+    <tr>
+        <td><%= button_to "Edit", edit_post_path(@post), :method => :get %></td>
+        <td><%= button_to "Delete", post_path(@post), :method => :delete, :confirm => "Sure? Cannot undo!" %></td>
+    </tr>
+  </table>
+<% end %>
+
+
 <% if @post.description %>
   <p><%= @post.description %></p>
 <% end %>
-<table>
-  <tr>
-      <td><%= button_to "Edit", edit_post_path(@post), :method => :get %></td>
-      <td><%= button_to "Delete", post_path(@post), :method => :delete, :confirm => "Sure? Cannot undo!" %></td>
-  </tr>
-</table>
 <br />
 <%= link_to image_tag(@post.image.url), :back %>
 

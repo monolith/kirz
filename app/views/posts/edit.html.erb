@@ -1,4 +1,17 @@
 <% title "Edit Post" %>
 
+<table>
+  <tr>
+    <td valign=top>
 <%= render :partial => 'form' %>
+
+    </td>
+    <td valign=top>
+      <p><strong>CURRENT IMAGE (THUMB)</strong></p>
+      <%= image_tag(@post.image.url(:small)) %>
+    </td>
+  </tr>
+</table>
+
+<p><i>Selecting a new file will replace the image, leave blank unless you want to change the current one.</i></p>
 

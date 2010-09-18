@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :login_required, :except => [:index, :show ]
 
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 

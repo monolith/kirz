@@ -1,10 +1,9 @@
 <% form_for @post, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :description %><br />
+    <p><strong>DESCRIPTION</strong></p>
     <%= f.text_area :description %>
-  </p>
 
+    <p><strong>UPLOAD</strong></p>
     <%= f.file_field :image %>
 
   <p><%= f.submit "Submit" %></p>

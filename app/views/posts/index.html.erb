@@ -1,6 +1,8 @@
 <% title "Posts" %>
 
-<p><%= button_to "New Post", new_post_path, :method => :get %><br /></p>
+<% if logged_in? %>
+  <p><%= button_to "New Post", new_post_path, :method => :get %><br /></p>
+<% end %>
 
 <table>
   <tr>

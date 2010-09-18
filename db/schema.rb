@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100915013920) do
+ActiveRecord::Schema.define(:version => 20100917105039) do
 
   create_table "posts", :force => true do |t|
     t.text     "description"
@@ -20,5 +20,19 @@ ActiveRecord::Schema.define(:version => 20100915013920) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
+
+  create_table "users", :force => true do |t|
+    t.string   "login",                     :limit => 40
+    t.string   "name",                      :limit => 100, :default => ""
+    t.string   "email",                     :limit => 100
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_token",            :limit => 40
+    t.datetime "remember_token_expires_at"
+  end
+
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end
