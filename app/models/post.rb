@@ -12,5 +12,10 @@ class Post < ActiveRecord::Base
   attr_accessible :description, :image
 
 
+  def related
+    # temp.. needs to be replaced with something else
+    Post.find :all, :limit => 5, :order => "rand()"
+  end
+
 end
 
