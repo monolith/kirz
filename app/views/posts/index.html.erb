@@ -1,20 +1,27 @@
 <% title "Posts" %>
+<% javascript :defaults, 'endless' %>
 
 <% if logged_in? %>
   <p><%= button_to "New Post", new_post_path, :method => :get %><br /></p>
 <% end %>
 
-<table>
-  <tr>
-    <% @column.each do |posts| %>
-      <td valign=top>
-        <% posts.each do |post| %>
-          <%= link_to image_tag(post.image.url(:small)), post_path(post) %><br/>
-        <% end %>
-      </td>
-    <% end %>
-  </tr>
-<table>
+<div class="test" id="test">
+  <table>
+    <tr>
+      <% @column.each_with_index do |posts, index| %>
+        <td valign=top>
+          <div id="column_<%= index+1 %>">
+              <%= render :partial => 'post', :collection => posts  %>
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  <table>
 
-<%= will_paginate @posts %>
+</div>
+
+<div id="pagination">
+  <%= will_paginate @posts %>
+</div>
+<div id=loading></div>
 
