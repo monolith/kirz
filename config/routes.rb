@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => :posts, :action => :index
 
   map.resources :posts
+  map.tagged_with '/tagged_with/:tag', :controller => 'posts', :action => 'tagged_with'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

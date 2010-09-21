@@ -10,7 +10,13 @@ function checkScroll() {
   cycle++; // silly hack
   if (nearBottomOfPage() && Ajax.activeRequestCount == 0 && !$('complete') && cycle > 1) {
     currentPage++;
-    new Ajax.Request('/posts.js?page=' + currentPage, {asynchronous:true, evalScripts:true, method:'get'});
+    var url = window.location;
+
+    if (window.location.pathname =="/") {
+      url = url + "posts" // default
+    }
+
+    new Ajax.Request(url + '.js?page=' + currentPage, {asynchronous:true, evalScripts:true, method:'get'});
   } else {
     if (!$('complete')) {
       setTimeout("checkScroll()", 250); // checks every half second, unless reached the end

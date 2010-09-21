@@ -8,8 +8,9 @@ class Post < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png']
   validates_attachment_size :image, :less_than => 5.megabytes
 
+  acts_as_taggable_on :tags
 
-  attr_accessible :description, :image
+  attr_accessible :description, :image, :tag_list
 
 
   def related

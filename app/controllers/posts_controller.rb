@@ -8,15 +8,7 @@ class PostsController < ApplicationController
 
     @posts = Post.paginate :page => params[:page], :per_page => 12, :order => "ID desc"
 
-
-    @column = Array.new
-    number_of_columns = 3
-    number_of_columns.times { @column << Array.new }
-
-    # creates a multidimentional array, with each array representing a column
-    @posts.each_with_index do | post, index |
-      @column[index%number_of_columns] << post
-    end
+    create_columns
 
   end
 
@@ -68,11 +60,29 @@ class PostsController < ApplicationController
   end
 
 
+  def tagged_with
+    @posts = Post.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 12, :order => "ID desc"
+    create_columns
+  end
+
 private
 
   def record_not_found
       flash[:error] = "Could not find what you were looking for..."
       redirect_to root_url
+  end
+
+  def create_columns
+    @column = Array.new
+    number_of_columns = 3
+    number_of_columns.times { @column << Array.new }
+
+    # creates a multidimentional array, with each array representing a column
+    @posts.each_with_index do | post, index |
+      @column[index%number_of_columns] << post
+    end
+
+    render :index
   end
 
 end
