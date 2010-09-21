@@ -1,2 +1,2 @@
-<div class= thumb id=thumb_<%= post.id.to_s %>><%= link_to image_tag(post.image.url(:small), :onload => "new Effect.Opacity('thumb_#{post.id.to_s}', { from: 0, to: 1, duration: 3 }); return false;"), post_path(post) %></div>
+<div class= thumb id=thumb_<%= post.id.to_s %>><%= link_to image_tag(post.image.url(:small), :onload => "new Effect.Opacity('thumb_#{post.id.to_s}', { from: 0, to: 1, duration: 1 }); return false;"), post_path(post) %></div>
 
