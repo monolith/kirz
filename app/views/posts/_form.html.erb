@@ -6,6 +6,12 @@
     <p><strong>TAGS</strong></p>
     <%= f.text_field :tag_list %>
 
+    <p>ALL EXISTING TAGS<p>
+
+    <% Post.tag_counts.each do |tag| %>
+
+      <%= tag %> | count: <%= tag.count %><br />
+    <% end %>
     <p><strong>UPLOAD</strong></p>
     <%= f.file_field :image %>
 
