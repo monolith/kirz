@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
                 :categories
 
   map.tagged_with '/tagged_with/:tag', :controller => 'posts', :action => 'tagged_with'
+  map.category '/category/:name', :controller => 'posts', :action => 'category'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

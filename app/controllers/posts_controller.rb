@@ -5,11 +5,9 @@ class PostsController < ApplicationController
 
 
   def index
-
     @posts = Post.paginate :page => params[:page], :per_page => 12, :order => "ID desc"
-
     create_columns
-
+    render :index
   end
 
   def show
@@ -21,9 +19,7 @@ class PostsController < ApplicationController
   end
 
   def create
-
     @post = Post.new(params[:post])
-
     if @post.save
       flash[:notice] = "Successfully created post."
       redirect_to root_url
@@ -63,6 +59,20 @@ class PostsController < ApplicationController
   def tagged_with
     @posts = Post.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 12, :order => "ID desc"
     create_columns
+    render :index
+
+  end
+
+  def category
+    category = Category.find_by_name(params[:name])
+    if category
+      @posts = category.posts.paginate :page => params[:page], :per_page => 12, :order => "ID desc"
+      create_columns
+    else
+      flash[:error] = "Category not found"
+    end
+    render :index
+
   end
 
 private
@@ -82,7 +92,6 @@ private
       @column[index%number_of_columns] << post
     end
 
-    render :index
   end
 
 end

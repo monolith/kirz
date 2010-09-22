@@ -5,5 +5,13 @@ module ApplicationHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
 
+  def menu
+    x = ""
+    Category.menu_items.each do |category|
+      x << link_to(category.name, category_path(category.name)) << tag("br")
+    end
+    x
+  end
+
 end
 
