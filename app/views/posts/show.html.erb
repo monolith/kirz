@@ -19,8 +19,13 @@
         <p><%= @post.description %></p>
       <% end %>
 
+    <div id=category>
+      Category: <%= @post.category.name if @post.category %>
+    </div>
+
       <% unless @post.tag_list.empty? %>
         <div id="tags">
+        Tags:
           <% @post.tag_list.each do |tag| %>
             <%= link_to tag, tagged_with_path(tag) %>
           <% end %>
