@@ -1,5 +1,9 @@
 <% form_for @post, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
+    <p><strong>CATEGORY</strong></p>
+
+    <%= collection_select(:post, :category_id, Category.all, :id, :name, {:prompt => 'Select Category'}) %>
+
     <p><strong>DESCRIPTION</strong></p>
     <%= f.text_area :description %>
 

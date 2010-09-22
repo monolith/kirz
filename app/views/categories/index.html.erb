@@ -1,0 +1,14 @@
+<% title "Categories" %>
+
+<table>
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%=h category.name %></td>
+      <td><%= link_to "Edit", edit_category_path(category) %></td>
+      <td><%= link_to "Delete", category_path(category), :method => :delete, :confirm => "Sure? Cannot undo!" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Category", new_category_path %></p>
+

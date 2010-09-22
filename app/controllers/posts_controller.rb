@@ -24,7 +24,6 @@ class PostsController < ApplicationController
 
     @post = Post.new(params[:post])
 
-
     if @post.save
       flash[:notice] = "Successfully created post."
       redirect_to root_url
@@ -35,6 +34,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+
   end
 
   def update
