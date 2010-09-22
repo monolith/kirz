@@ -20,7 +20,7 @@
       <% end %>
 
     <div id=category>
-      Category: <%= @post.category.name if @post.category %>
+      Category: <%= link_to(@post.category.name, category_path(@post.category.name)) if @post.category %>
     </div>
 
       <% unless @post.tag_list.empty? %>
