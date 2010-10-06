@@ -35,7 +35,7 @@
     </td>
     <td valign=top>
       <div id=related>
-        <%= render :partial => 'post', :collection => @post.related  %>
+        <%= render :partial => 'post', :collection => @post.related, :locals => { :size => :thumb }  %>
       </div>
 
     </td>

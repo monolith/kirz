@@ -1,5 +1,5 @@
 body {
-  background-color: #4B7399;
+  background-color: #ffffff;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
@@ -19,12 +19,12 @@ a {
 }
 
 #container {
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
   background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
+  padding: 0px 0px;
+  border: solid 0px;
+  margin-top: 0px;
 }
 
 #flash_notice, #flash_error {
@@ -79,3 +79,21 @@ a {
   font-size: 12px;
   list-style: disc;
 }
+
+#menu {
+  text-align: right;
+  margin: 0px;
+	padding: 0px;
+	width: 130px;
+	position: fixed;
+	float: left;
+}
+
+#main {
+  margin: 0px;
+  margin-left: 150px;
+	padding: 0px;
+	float: left;
+
+}
+
