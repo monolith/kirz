@@ -87,6 +87,7 @@ a {
 	width: 130px;
 	position: fixed;
 	float: left;
+  line-height:8pt;
 }
 
 #main {
@@ -94,6 +95,27 @@ a {
   margin-left: 150px;
 	padding: 0px;
 	float: left;
+
+}
+
+.thumb {
+  padding: 2px;
+
+}
+
+a.menu {
+  background-color: #FFFFFF;
+  text-decoration: none;
+  letter-spacing: 1pt;
+  font-size:7.5pt;
+  font-family:helvetica,Sans Serif;
+  color: #000000;
+  text-transform:uppercase;
+
+}
+
+a.menu:hover {
+  background-color: #CBCBCB;
 
 }
 

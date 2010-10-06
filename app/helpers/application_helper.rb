@@ -8,7 +8,7 @@ module ApplicationHelper
   def menu
     x = ""
     Category.menu_items.each do |category|
-      x << link_to(category.name, category_path(category.name)) << tag("br")
+      x << link_to(category.name, category_path(category.name), :class => "menu") << tag("br")
     end
     x
   end
