@@ -16,6 +16,8 @@ ActionController::Routing::Routes.draw do |map|
   map.tagged_with '/tagged_with/:tag', :controller => 'posts', :action => 'tagged_with'
   map.category '/category/:name', :controller => 'posts', :action => 'category'
 
+  map.random_background "random_background", :controller => "background", :action => "random"
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

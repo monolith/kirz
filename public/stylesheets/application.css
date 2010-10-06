@@ -2,6 +2,9 @@ body {
   background-color: #ffffff;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
+  background-image:url('/random_background');
+  background-repeat:no-repeat;
+  background-attachment:fixed;
 }
 
 a img {
