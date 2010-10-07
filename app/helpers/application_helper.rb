@@ -6,7 +6,7 @@ module ApplicationHelper
   end
 
   def menu
-    x = ""
+    x = link_to("home", root_path, :class => "menu") << tag("br")
     Category.menu_items.each do |category|
       x << link_to(category.name, category_path(category.name), :class => "menu") << tag("br")
     end
