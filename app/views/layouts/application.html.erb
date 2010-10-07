@@ -7,17 +7,25 @@
     <%= yield(:head) %>
   </head>
   <body>
+    <div id="top_line"></div>
     <div id="container">
-      <%- flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <%- end -%>
 
-      <div id=menu>
-        <%= menu %>
-      </div>
       <div id=main>
+        <%- flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <%- end -%>
+
         <%= yield %>
       </div>
+
+      <div id=menu_column>
+        <%= image_tag "logo.png" %>
+        <br />
+        <div id=menu>
+          <%= menu %>
+        </menu>
+      </div>
+
     </div>
   </body>
 </html>

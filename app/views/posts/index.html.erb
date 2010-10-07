@@ -5,8 +5,7 @@
   <p><%= button_to "New Post", new_post_path, :method => :get %><br /></p>
 <% end %>
 
-<div class="test" id="test">
-  <table>
+  <table class=main>
     <tr>
       <% @column.each_with_index do |posts, index| %>
         <td valign=top>
@@ -17,8 +16,6 @@
       <% end %>
     </tr>
   <table>
-
-</div>
 
 <div id="pagination">
   <%= will_paginate @posts %>
