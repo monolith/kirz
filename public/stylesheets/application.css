@@ -116,7 +116,9 @@ a {
 	padding: 0px;
   line-height:8pt;
   padding-left: 14px;
-  border-left: gray 7px solid;
+  border-left: red 7px solid;
+  opacity: 0.5;
+  -moz-opacity: 0.5; /* older Gecko-based browsers */
 
 
 }
@@ -176,7 +178,8 @@ a.menu {
 }
 
 a.menu:hover {
-  background-color: #CBCBCB;
+  background-color: red;
+  color: white;
 
 }
 
