@@ -9,56 +9,81 @@
   </table>
 <% end %>
 
-<table>
-  <tr>
-    <td valign=top>
-      <%= link_to image_tag(@post.image.url), :root %>
-      <br />
+    <div id=show_image>
+      <%= link_to image_tag(@post.image.url), :back %>
+    </div>
 
-      <% if @post.description %>
+    <div id=description>
+      <% if @post.description and @post.description.length > 0 %>
         <p><%= @post.description %></p>
       <% end %>
+    </div>
+
 
     <div id=category>
       Category: <%= link_to(@post.category.name, category_path(@post.category.name)) if @post.category %>
     </div>
 
-      <% unless @post.tag_list.empty? %>
-        <div id="tags">
-        Tags:
-          <% @post.tag_list.each do |tag| %>
-            <%= link_to tag, tagged_with_path(tag) %>
-          <% end %>
-        </div>
-      <% end %>
+    <% unless @post.tag_list.empty? %>
+      <div id="tags">
+      Tags:
+        <% @post.tag_list.each do |tag| %>
+          <%= link_to tag, tagged_with_path(tag) %>
+        <% end %>
+      </div>
+    <% end %>
 
-    </td>
-    <td valign=top>
-      <div id=related>
-        <%= render :partial => 'post', :collection => @post.related, :locals => { :size => :thumb }  %>
+
+
+    <div id=social_container>
+
+      <div id=social>
+         <iframe src="http://www.facebook.com/plugins/like.php?href=<%= request.url %>&amp;layout=standard&amp;show_faces=false&amp;width=250&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:250px; height:35px;" allowTransparency="true"></iframe>
+
+      </div>
+      <div id=social>
+        <a name="fb_share" type="button" href="http://www.facebook.com/sharer.php">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+
       </div>
 
-    </td>
-  </tr>
-</table>
+      <div id=social>
 
-    <iframe src="http://www.facebook.com/plugins/like.php?href=<%= request.url %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+              <script type="text/javascript">
+              (function() {
+              var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = 'http://widgets.digg.com/buttons.js';
+              s1.parentNode.insertBefore(s, s1);
+              })();
+              </script>
 
-    <a name="fb_share" type="button" href="http://www.facebook.com/sharer.php">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+              <!-- Compact Button -->
+              <a class="DiggThisButton DiggCompact"></a>
+        </div>
 
-<a href="http://twitter.com/share" class="twitter-share-button">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+      <div id=social>
 
+              <a href="http://twitter.com/share" class="twitter-share-button">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 
-<script type="text/javascript">
-(function() {
-var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
-s.type = 'text/javascript';
-s.async = true;
-s.src = 'http://widgets.digg.com/buttons.js';
-s1.parentNode.insertBefore(s, s1);
-})();
-</script>
+      </div>
+  </div>
 
-<!-- Compact Button -->
-<a class="DiggThisButton DiggCompact"></a>
+  <h1>Similar</h1>
+
+  <div id=related>
+
+      <table class=main>
+        <tr>
+          <% @column.each_with_index do |posts, index| %>
+            <td valign=top>
+              <div id="column_<%= index+1 %>">
+                  <%= render :partial => 'post', :collection => posts, :locals => { :size => :thumb }  %>
+              </div>
+            </td>
+          <% end %>
+        </tr>
+      <table>
+
+  </div>
 

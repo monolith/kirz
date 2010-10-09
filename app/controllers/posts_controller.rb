@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find params[:id], :include => [:category]
+    create_related_columns
   end
 
   def new
@@ -93,6 +94,19 @@ private
     end
 
   end
+
+  def create_related_columns
+    @column = Array.new
+    number_of_columns = 4
+    number_of_columns.times { @column << Array.new }
+
+    # creates a multidimentional array, with each array representing a column
+    @post.related.each_with_index do | post, index |
+      @column[index%number_of_columns] << post
+    end
+
+  end
+
 
 end
 
