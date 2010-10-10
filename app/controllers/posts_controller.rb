@@ -13,6 +13,9 @@ class PostsController < ApplicationController
   def show
     @post = Post.find params[:id], :include => [:category]
     create_similar_columns
+
+    flash[:error] = "The logic for similar is turned off, the below is only to show the layout" if RAILS_ENV == "production"
+
   end
 
   def new
