@@ -210,8 +210,13 @@ a {
 }
 
 
-a:hover {
+a.menu:hover {
   background-color: #CBCBCB;
+}
+
+
+a.menu:hover {
+  background-color: none;
 }
 
 

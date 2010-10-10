@@ -17,9 +17,52 @@ class Post < ActiveRecord::Base
   attr_accessible :description, :image, :tag_list, :category_id
 
 
-  def related
-    # temp.. needs to be replaced with something else
-    Post.find :all, :limit => 5, :order => "rand()"
+  def similar
+    all = Post.search "#{tag_list.to_s}, #{category.name}, #{description}",
+                :include => [:category, :tags],
+                :field_weights => {
+                  "tags" => 3,
+                  "category" => 2,
+                  "description" => 1
+                },
+                :match_mode => :any,
+                :without => {:id => id}, # should not find self
+                :order => "@relevance DESC, created_at DESC",
+               :limit => 30
+
+    # the above can return up to 30 results (whatever is set in the limit)
+    # only a subset will actually be displayed, i.e. 7
+    # the below takes a randomized sample
+
+    count = all.count
+
+    if count > 7
+      random_positions = (0...count).to_a.sort_by{rand}.first(2).sort
+
+      random =[]
+      random_positions.each do |position|
+        random << all[position]
+      end
+
+      return random
+    else
+      return all
+    end
+  end
+
+
+
+
+  # SEARCHING INDEXING
+  define_index do
+    # fields
+    indexes category.name, :as => :category, :sortable => true
+    indexes tags.name, :as => :tags, :sortable => true
+    indexes description
+
+    # attributes
+    has created_at
+    has :id
   end
 
 end
