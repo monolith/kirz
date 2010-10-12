@@ -41,7 +41,7 @@ class Post < ActiveRecord::Base
       count = all.count
 
       if count > 7
-        random_positions = (0...count).to_a.sort_by{rand}.first(2).sort
+        random_positions = (0...count).to_a.sort_by{rand}.first(7).sort
 
         random =[]
         random_positions.each do |position|
@@ -68,6 +68,9 @@ class Post < ActiveRecord::Base
     # attributes
     has created_at
     has :id
+
+    set_property :delta => true
+
   end
 
 end

@@ -10,37 +10,7 @@ class PostsController < ApplicationController
 
     per_page = 12
 
-    if params[:search] # search
-
-#      if RAILS_ENV == "production"
-#        @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
-#        flash[:error] = "sorry, search is disabled here.  Showing regular home page"
-#      else
-
-#        @posts = Post.search params[:search],
-#                            :include => [:category, :tags],
-#                            :field_weights => {
-#                              "tags" => 3,
-#                              "category" => 2,
-#                              "description" => 1
-#                            },
-#                            :match_mode => :any,
-#                            :page          => params[:page],
-#                            :per_page => per_page,
-#                            :order => "@relevance DESC, created_at DESC"
-#      end
-
-    else
-
-     if params[:category_id] # check if this was launched from a category path
-        @category = Category.find_by_name params[:category_id]
-        @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc", :conditions => ['category_id = ?', @category.id]
-
-      else
-        @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
-      end
-
-    end
+    @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
 
     create_columns
     render :index
@@ -141,6 +111,7 @@ class PostsController < ApplicationController
       render :index
     end
   end
+
 
 private
 

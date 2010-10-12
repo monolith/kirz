@@ -242,16 +242,16 @@ a.menu:hover {
   padding-right: 7px;
 
 }
-#category {
+#category, #tags {
   padding-top: 7px;
-}
-#tags {
-  padding-bottom: 7px;
 }
 
 #social_container {
     height: 35px;
     width: 100%;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 7px;
 
 }
 #social {
