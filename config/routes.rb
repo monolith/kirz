@@ -9,12 +9,23 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => :posts, :action => :index
 
-  map.resources :users,
-                :posts,
-                :categories
+  map.resources :users
+  map.resources :posts
 
-  map.tagged_with '/tagged_with/:tag', :controller => 'posts', :action => 'tagged_with'
-  map.category '/category/:name', :controller => 'posts', :action => 'category'
+  map.resources :categories #, :has_many => [:posts]
+
+  map.tagged_with '/tagged_with/:tag', :controller => 'posts', :action => 'tagged_with', :method => :get
+  map.tagged_with_js '/tagged_with/:tag.:js', :controller => 'posts', :action => 'tagged_with', :method => :get
+
+  map.categorized '/categorized/:name', :controller => 'posts', :action => 'categorized', :method => :get
+  map.categorized_js '/categorized/:name.:js', :controller => 'posts', :action => 'categorized', :method => :get
+
+
+  map.search '/search/', :controller => 'posts', :action => 'search', :method => :get
+  # hackity to make endless page work
+  map.search_hack '/search/:search', :controller => 'posts', :action => 'search', :method => :get
+  map.search_hack_js '/search/:search.:js', :controller => 'posts', :action => 'search', :method => :get
+
 
   map.random_background "random_background", :controller => "background", :action => "random"
 

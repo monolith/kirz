@@ -114,16 +114,15 @@ a img {
 }
 
 #menu_column {
-  text-align: left;
   margin-top: 7px;
 	padding: 0px;
-  line-height:8pt;
 	position: fixed;
   top: 0px;
   left: 792px;
   height: 100%;
 
   background-image:url('/images/backgrounds/transparency.png');
+
 
 }
 
@@ -261,5 +260,32 @@ a.menu:hover {
   padding-left: 7px;
   float: left;
 
+}
+
+#searchBox, #sometext {
+  margin: 0px;
+  margin-top: 7px;
+  padding: 0px;
+  padding-left: 7px;
+}
+
+form {
+  margin: 0px;
+  padding: 0px;
+}
+
+input[type="text"], input[type="password"], input[type="checkbox"], textarea {
+
+  border: none;
+  background-color: #ffffff;
+  font-color: #000;
+}
+
+.searchButton{
+  background:url(/images/icons/search.png) no-repeat;
+  cursor:pointer;
+  width: 13px;
+  height: 13px;
+  border: none;
 }
 

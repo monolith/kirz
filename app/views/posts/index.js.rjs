@@ -1,4 +1,3 @@
-
 page[:pagination].hide
 page.replace_html :loading, :text => "Loading more page results..."
 

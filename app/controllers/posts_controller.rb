@@ -1,11 +1,47 @@
 class PostsController < ApplicationController
-  before_filter :login_required, :except => [:index, :show, :category, :tagged_with ]
+  require 'uri'
+
+  before_filter :login_required, :except => [:index, :show, :categorized, :tagged_with, :search ]
 
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
 
   def index
-    @posts = Post.paginate :page => params[:page], :per_page => 12, :order => "ID desc"
+
+    per_page = 12
+
+    if params[:search] # search
+
+#      if RAILS_ENV == "production"
+#        @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
+#        flash[:error] = "sorry, search is disabled here.  Showing regular home page"
+#      else
+
+#        @posts = Post.search params[:search],
+#                            :include => [:category, :tags],
+#                            :field_weights => {
+#                              "tags" => 3,
+#                              "category" => 2,
+#                              "description" => 1
+#                            },
+#                            :match_mode => :any,
+#                            :page          => params[:page],
+#                            :per_page => per_page,
+#                            :order => "@relevance DESC, created_at DESC"
+#      end
+
+    else
+
+     if params[:category_id] # check if this was launched from a category path
+        @category = Category.find_by_name params[:category_id]
+        @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc", :conditions => ['category_id = ?', @category.id]
+
+      else
+        @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
+      end
+
+    end
+
     create_columns
     render :index
   end
@@ -62,21 +98,48 @@ class PostsController < ApplicationController
 
   def tagged_with
     @posts = Post.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 12, :order => "ID desc"
+
     create_columns
     render :index
-
   end
 
-  def category
-    category = Category.find_by_name(params[:name])
-    if category
-      @posts = category.posts.paginate :page => params[:page], :per_page => 12, :order => "ID desc"
-      create_columns
-    else
-      flash[:error] = "Category not found"
-    end
-    render :index
+  def categorized
+    category = Category.find_by_name params[:name]
+    @posts = category.posts.paginate :page => params[:page], :per_page => 12, :order => "ID desc"
 
+    create_columns
+    render :index
+  end
+
+  def search
+    if params[:query]  # hackity
+      redirect_to '/search/' + URI.escape(params[:query], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+      return
+    else
+      per_page = 12
+
+      if RAILS_ENV == "production"
+        @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
+        flash[:error] = "sorry, search is disabled here.  Showing regular home page"
+      else
+
+        @posts = Post.search params[:search],
+                            :include => [:category, :tags],
+                            :field_weights => {
+                              "tags" => 3,
+                              "category" => 2,
+                              "description" => 1
+                            },
+                            :match_mode => :any,
+                            :page          => params[:page],
+                            :per_page => per_page,
+                            :order => "@relevance DESC, created_at DESC"
+      end
+
+      @query = params[:search]
+      create_columns
+      render :index
+    end
   end
 
 private

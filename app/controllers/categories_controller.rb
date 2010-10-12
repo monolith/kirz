@@ -20,11 +20,11 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
+    @category = Category.find_by_name(params[:id])
   end
 
   def update
-    @category = Category.find(params[:id])
+    @category = Category.find_by_name(params[:id])
     if @category.update_attributes(params[:category])
       flash[:notice] = "Successfully updated category."
       redirect_to categories_url
@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
 
 
   def destroy
-    @category = Category.find params[:id]
+    @category = Category.find_by_name params[:id]
 
     if @category.destroy
       flash[:notice] = "The post was deleted."

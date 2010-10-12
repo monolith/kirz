@@ -8,5 +8,9 @@ class Category < ActiveRecord::Base
     Category.find :all, :order => "name"
   end
 
+  def to_param
+    name
+  end
+
 end
 

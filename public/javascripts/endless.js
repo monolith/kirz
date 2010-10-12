@@ -10,13 +10,15 @@ function checkScroll() {
   cycle++; // silly hack
   if (nearBottomOfPage() && Ajax.activeRequestCount == 0 && !$('complete') && cycle > 1) {
     currentPage++;
-    var url = window.location;
+    var url = new String();
+    url = window.location;
 
     if (window.location.pathname =="/") {
-      url = url + "posts" // default
+      url = url + "posts"
     }
 
     new Ajax.Request(url + '.js?page=' + currentPage, {asynchronous:true, evalScripts:true, method:'get'});
+
   } else {
     if (!$('complete')) {
       setTimeout("checkScroll()", 250); // checks every half second, unless reached the end
@@ -38,6 +40,13 @@ function nearBottomOfPage(){
   var below_window = last - Position.GetWindowSize().height;
   return below_window < 250; // number of pixels below bottom of browser.. next page will be loaded if true
 }
+
+function $_GET(q,s) {
+    s = (s) ? s : window.location.search;
+    var re = new RegExp('&amp;'+q+'=([^&amp;]*)','i');
+    return (s=s.replace(/^\?/,'&amp;').match(re)) ?s=s[1] :s='';
+}
+
 
 
 document.observe('dom:loaded', checkScroll);
