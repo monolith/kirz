@@ -86,6 +86,12 @@ class PostsController < ApplicationController
       redirect_to '/search/' + URI.escape(params[:query], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
       return
     else
+
+      unless params[:query] and params[:query].length > 0
+        redirect_to root_path
+        return
+      end
+
       per_page = 12
 
       if RAILS_ENV == "production"
@@ -107,6 +113,13 @@ class PostsController < ApplicationController
       end
 
       @query = params[:search]
+
+      if @posts
+        flash[:notice] = "Search results for: " + @query
+      else
+        flash[:notice] = "Please try another search.  Nothing found for: " + @query
+      end
+
       create_columns
       render :index
     end

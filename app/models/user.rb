@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
+  validate :check_if_invited
 
 
   # HACK HACK HACK -- how to do attr_accessible from here?
@@ -47,5 +48,14 @@ class User < ActiveRecord::Base
   end
 
 
+  private
+
+  def check_if_invited
+    errors.add_to_base "sorry, we don't know you" unless invited?
+  end
+
+  def invited?
+    Invitation.find_by_email(email)
+  end
 end
 

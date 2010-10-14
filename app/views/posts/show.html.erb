@@ -15,20 +15,20 @@
 
     <div id=description>
       <% if @post.description and @post.description.length > 0 %>
-        <p><%= @post.description %></p>
+        <p><%= sanitize(@post.description) %></p>
       <% end %>
     </div>
 
 
     <div id=category>
-      Category: <%= link_to(@post.category.name, category_path(@post.category.name), :class => "menu") if @post.category %>
+      Category: <%= link_to(sanitize(@post.category.name), category_path(@post.category.name), :class => "menu") if @post.category %>
     </div>
 
     <% unless @post.tag_list.empty? %>
       <div id="tags">
       Tags:
         <% @post.tag_list.each do |tag| %>
-          <%= link_to tag, tagged_with_path(tag), :class => "menu" %>
+          <%= link_to sanitize(tag), tagged_with_path(tag), :class => "menu" %>
         <% end %>
       </div>
     <% end %>

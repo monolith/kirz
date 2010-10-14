@@ -14,7 +14,7 @@
 
     <% Post.tag_counts.each do |tag| %>
 
-      <%= tag %> | count: <%= tag.count %><br />
+      <%=h tag %> | count: <%= tag.count %><br />
     <% end %>
     <p><strong>UPLOAD</strong></p>
     <%= f.file_field :image %>

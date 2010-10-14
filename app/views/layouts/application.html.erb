@@ -5,6 +5,8 @@
     <title><%= h(yield(:title) || "Untitled") %></title>
     <%= stylesheet_link_tag 'application' %>
     <%= yield(:head) %>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/Kirzhner-staging">
   </head>
   <body>
 
@@ -13,7 +15,7 @@
 
         <div id=main>
           <%- flash.each do |name, msg| -%>
-            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            <%= content_tag :div, sanitize(msg), :id => "flash_#{name}" %>
           <%- end -%>
 
           <%= yield %>
