@@ -40,6 +40,9 @@
       <div id=social>
 <!--->         <iframe src="http://www.facebook.com/plugins/like.php?href=<%= request.url %>&amp;layout=standard&amp;show_faces=false&amp;width=250&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:250px; height:35px;" allowTransparency="true"></iframe>
 --->
+
+        <fb:like></fb:like>
+
       </div>
       <div id=social>
         <a name="fb_share" type="button" href="http://www.facebook.com/sharer.php">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
@@ -88,21 +91,21 @@
 
     </div>
 
-<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({appId: 'your app id', status: true, cookie: true,
-             xfbml: true});
-  };
-  (function() {
-    var e = document.createElement('script'); e.async = true;
-    e.src = document.location.protocol +
-      '//connect.facebook.net/en_US/all.js';
-    document.getElementById('fb-root').appendChild(e);
-  }());
-</script>
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({appId: '161640670526928', status: true, cookie: true,
+                 xfbml: true});
+      };
+      (function() {
+        var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.src = document.location.protocol +
+          '//connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+      }());
+    </script>
 
-
-<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like width="225"></fb:like>
   <% end %>
 
