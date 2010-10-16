@@ -9,66 +9,51 @@
   </table>
 <% end %>
 
-    <div id=show_image>
-      <%= link_to image_tag(@post.image.url), :back %>
-    </div>
+<div id=time>
+  <p>this post was made<br/>on <%= @post.formatted_created_at %></p>
+</div>
 
-    <div id=description>
-      <% if @post.description and @post.description.length > 0 %>
-        <p><%= sanitize(@post.description) %></p>
-      <% end %>
-    </div>
+    <table cellspacing=0 cellpadding=0 border=0>
+      <tr>
+        <td colspan=2>
+            <%= image_tag(@post.image.url) %>
 
-
-    <div id=category>
-      Category: <%= link_to(sanitize(@post.category.name), category_path(@post.category.name), :class => "menu") if @post.category %>
-    </div>
-
-    <% unless @post.tag_list.empty? %>
-      <div id="tags">
-      Tags:
-        <% @post.tag_list.each do |tag| %>
-          <%= link_to sanitize(tag), tagged_with_path(tag), :class => "menu" %>
-        <% end %>
-      </div>
-    <% end %>
+            <% if @post.description and @post.description.length > 0 %>
+              <p><%= sanitize(@post.description) %></p>
+            <% end %>
 
 
+            <p>Category: <%= link_to(sanitize(@post.category.name), category_path(@post.category.name), :class => "menu") if @post.category %>
 
-    <div id=social_container>
+            <% unless @post.tag_list.empty? %>
+              <br/>Tags:
+                <% @post.tag_list.each do |tag| %>
+                  <%= link_to sanitize(tag), tagged_with_path(tag), :class => "menu" %>
+                <% end %>
+            <% end %>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td valign=top>
+          <fb:like show_faces=false width="225"></fb:like>
+        </td>
+        <td valign=top>
+          <div id=social_right_align>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+            </div>
 
-      <div id=social>
-        <fb:like width=225 show_faces=false></fb:like>
-      </div>
-
-      <div id=social>
-              <a href="http://twitter.com/share" class="twitter-share-button">Tweet</a>
-              <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-      </div>
-
-      <div id=social>
-              <script type="text/javascript">
-              (function() {
-              var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
-              s.type = 'text/javascript';
-              s.async = true;
-              s.src = 'http://widgets.digg.com/buttons.js';
-              s1.parentNode.insertBefore(s, s1);
-              })();
-              </script>
-
-              <!-- Compact Button -->
-              <a class="DiggThisButton DiggCompact"></a>
-        </div>
-
-  </div>
+          <div id=social_right_align style="text-align:left;">
+                <a class="DiggThisButton DiggCompact"></a>
+          </div>
+          </td>
+        </tr>
+      </table>
 
   <% if @column.size > 0 %>
-    <h1>Similar</h1>
+    <p>SIMILAR</p>
 
-    <div id=similar>
-
-        <table class=main>
+        <table class=main >
           <tr>
             <% @column.each_with_index do |posts, index| %>
               <td valign=top>
@@ -79,24 +64,5 @@
             <% end %>
           </tr>
         <table>
-
-    </div>
   <% end %>
-
-
-    <div id="fb-root"></div>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({appId: '161640670526928', status: true, cookie: true,
-                 xfbml: true});
-      };
-      (function() {
-        var e = document.createElement('script');
-        e.type = 'text/javascript';
-        e.src = document.location.protocol +
-          '//connect.facebook.net/en_US/all.js';
-        e.async = true;
-        document.getElementById('fb-root').appendChild(e);
-      }());
-    </script>
 

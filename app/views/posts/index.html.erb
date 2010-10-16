@@ -1,6 +1,9 @@
 <% title "Posts" %>
 <% javascript :defaults, 'endless' %>
 
+<div id=time>
+  <p>the latest post was made<br/>on <%= Post.last_post_time %></p>
+</div>
 <% if logged_in? %>
   <p><%= button_to "New Post", new_post_path, :method => :get %><br /></p>
 <% end %>

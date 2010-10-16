@@ -18,7 +18,7 @@ xml.rss :version => "2.0" do
     @posts.each do |post|
 
       xml.item do
-        xml.title "Posted " + time_ago_in_words(post.created_at) + " ago"
+        xml.title "Posted " + post.formatted_created_at
         xml.description link_to(image_tag(formatted_root_url + post.image.url(:small)[1..-1]), formatted_post_url(post))
         xml.link formatted_post_url(post)
       end

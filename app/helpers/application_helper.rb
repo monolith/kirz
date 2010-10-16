@@ -6,10 +6,14 @@ module ApplicationHelper
   end
 
   def menu
-    x = link_to("home", root_path, :class => "menu") << tag("br")
+    x = ""
     Category.menu_items.each do |category|
-      x << link_to(category.name, categorized_path(category.name), :class => "menu") << tag("br")
+      x << link_to(category.name.upcase, categorized_path(category.name), :class => "menu") << tag("br")
     end
+
+    x << "<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>"
+
+    x << link_to("home", root_path)
     x
   end
 

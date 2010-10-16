@@ -56,7 +56,22 @@ class Post < ActiveRecord::Base
   end
 
 
+  def self.last_post_time
+    Post.formatted_date Post.last.created_at
+  end
 
+  def formatted_created_at
+    Post.formatted_date created_at
+  end
+
+  def self.formatted_date(t)
+    h = t.strftime('%I').to_i.to_s
+
+    meridian = t.strftime('%p').insert(1,'.').insert(3, '.')
+
+    x = t.strftime('%B %d, %Y at ') + h + t.strftime(':%M:%S ') + meridian + " " + t.zone
+    x.downcase
+  end
 
   # SEARCHING INDEXING
   define_index do
