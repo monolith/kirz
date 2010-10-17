@@ -11,17 +11,6 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/Kirzhner-staging">
 
 
-    <script type="text/javascript">
-    (function() {
-    var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
-    s.type = 'text/javascript';
-    s.async = true;
-    s.src = 'http://widgets.digg.com/buttons.js';
-    s1.parentNode.insertBefore(s, s1);
-    })();
-    </script>
-
-
   </head>
   <body>
 
@@ -36,7 +25,7 @@
             <div id=bar_social>
                 <p><a href="http://feeds.feedburner.com/Kirzhner-staging" rel="alternate" type="application/rss+xml"><%= image_tag "icons/rss.png" %></a>
 
-                <a href="http://www.facebook.com/people/Bob-Smith/" target="_TOP"><%= image_tag "icons/fb.png" %></a></p>
+                <a href="http://www.facebook.com/people/Bob-Smith/" target="_TOP"><%= image_tag "icons/fb.png", :alt => "a.r.kirzhner" %></a></p>
 
 
             </div>
@@ -81,22 +70,6 @@
 
       </div>
 
-
-    <div id="fb-root"></div>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({appId: '167440476600508', status: true, cookie: true,
-                 xfbml: true});
-      };
-      (function() {
-        var e = document.createElement('script');
-        e.type = 'text/javascript';
-        e.src = document.location.protocol +
-          '//connect.facebook.net/en_US/all.js';
-        e.async = true;
-        document.getElementById('fb-root').appendChild(e);
-      }());
-    </script>
 
   </body>
 </html>
