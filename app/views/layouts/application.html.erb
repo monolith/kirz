@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
     <title><%= h(yield(:title) || "Untitled") %></title>
     <%= stylesheet_link_tag 'application' %>
@@ -34,7 +34,7 @@
             <div id=bar_social>
                 <p><a href="http://feeds.feedburner.com/Kirzhner-staging" rel="alternate" type="application/rss+xml"><%= image_tag "icons/rss.png" %></a>
 
-                <a href="http://www.facebook.com/people/Bob-Smith/100001615028919" target="_TOP"><%= image_tag "icons/fb.png" %></a></p>
+                <a href="http://www.facebook.com/people/Bob-Smith/" target="_TOP"><%= image_tag "icons/fb.png" %></a></p>
 
 
             </div>
