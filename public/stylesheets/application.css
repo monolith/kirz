@@ -103,11 +103,12 @@ a img {
 #bar_social {
   margin: 0px;
   margin-top: 80px;
-  margin-left: 14px;
+  margin-left: 1049px;
   padding: 0px;
   border: none;
   width: 50px;
   float:left;
+  position:fixed;
 }
 
 
@@ -152,7 +153,7 @@ a img {
   text-align: left;
   margin-left: 44px;
   margin-top: 82px;
-  line-height: 9pt;
+  line-height: 10pt;
 	padding: 0px;
   padding-left: 0px;
 
@@ -201,6 +202,19 @@ table.main td {
   float: bottom;
   line-height:0pt;
 
+}
+
+.thumb img {
+  border: 0;
+  filter:alpha(opacity=65);
+  -moz-opacity: 0.65;
+  opacity: 0.65;
+}
+
+.thumb img:hover {
+  filter:alpha(opacity=90);
+  -moz-opacity: 0.90;
+  opacity: 0.90;
 }
 
 a {

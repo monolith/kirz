@@ -69,8 +69,8 @@ class Post < ActiveRecord::Base
 
     meridian = t.strftime('%p').insert(1,'.').insert(3, '.')
 
-    x = t.strftime('%B %d, %Y at ') + h + t.strftime(':%M:%S ') + meridian + " " + t.zone
-    x.downcase
+    x = t.strftime('%B %d, %Y at ') + h + t.strftime(':%M:%S ') + meridian
+    x.downcase  + " " + t.zone.upcase
   end
 
   # SEARCHING INDEXING
