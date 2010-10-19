@@ -64,6 +64,11 @@ class Post < ActiveRecord::Base
     Post.formatted_date created_at
   end
 
+
+  def formatted_created_at_date
+    Post.formatted_date_only created_at
+  end
+
   def self.formatted_date(t)
     h = t.strftime('%I').to_i.to_s
 
@@ -71,6 +76,10 @@ class Post < ActiveRecord::Base
 
     x = t.strftime('%B %d, %Y at ') + h + t.strftime(':%M:%S ') + meridian
     x.downcase  + " " + t.zone.upcase
+  end
+
+  def self.formatted_date_only(t)
+    t.strftime('%B %d, %Y').downcase
   end
 
   # SEARCHING INDEXING
