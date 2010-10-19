@@ -1,7 +1,7 @@
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #ffffff;
+  background-color: #FFFAF0;
 
   text-decoration: none;
   font-size:9pt;
@@ -78,6 +78,16 @@ a img {
   list-style: disc;
 }
 
+#logo {
+  margin: 0px;
+	padding: 0px;
+	position: fixed;
+  top: 7px;
+  left: 7px;
+  z-index: 5;
+
+}
+
 #bar {
   margin-top: 0px;
 	padding: 0px;
@@ -86,8 +96,8 @@ a img {
   left: 0px;
   height: 118px;
   width: 100%;
-  background-color: #FFF;
   z-index: 2;
+  background-color: #FFFAF0;
 }
 
 #searchBox {
@@ -99,6 +109,7 @@ a img {
   text-align: right;
   float: left;
 }
+
 
 #bar_social {
   margin: 0px;
@@ -122,14 +133,15 @@ a img {
   width: 365px;
 
   float: left;
-  z-index: 2;
-  background-color: #FFF;
+  z-index: 3;
+  background-color: #FFFAF0;
 }
 
 
 #menu_column {
   margin-top: 0px;
 	padding: 0px;
+	padding-top: 100px;
 	position: fixed;
   top: 0px;
   left: 0px;
@@ -137,13 +149,12 @@ a img {
   height: 100%;
   float: left;
   z-index: 3;
+  background-color: #FFFAF0;
+
 }
 
 #menu_column p {
-  margin:0px;
   margin-left: 44px;
-  padding: 0px;
-
 }
 #menu_column img {
   margin-left: 22px;
@@ -153,7 +164,7 @@ a img {
   text-align: left;
   margin-left: 44px;
   margin-top: 82px;
-  line-height: 10pt;
+  line-height: 11pt;
 	padding: 0px;
   padding-left: 0px;
 
@@ -166,7 +177,6 @@ a img {
 	padding-top: 183px;
 	height: 100%;
 	width: 778px;
-  z-index: 1;
 
 }
 
@@ -244,12 +254,13 @@ a.menu:hover {
 form {
   margin: 0px;
   padding: 0px;
+  z-index: 5;
 }
 
 input[type="text"], input[type="password"], input[type="checkbox"], textarea {
 
   border: 1px solid #6E6E6E;
-  background-color: #FFF;
+  background-color: #FFFAF0;
   color: #6E6E6E
   padding: 2px;
 }

@@ -8,8 +8,8 @@ class PostsController < ApplicationController
 
   def index
 
+    flash.clear
     per_page = 12
-
     @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
 
     create_columns
@@ -17,6 +17,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    flash.clear
+
     @post = Post.find params[:id], :include => [:category]
     create_similar_columns
 
@@ -67,6 +69,7 @@ class PostsController < ApplicationController
 
 
   def tagged_with
+    flash.clear
     @posts = Post.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 12, :order => "ID desc"
 
     create_columns
@@ -74,6 +77,7 @@ class PostsController < ApplicationController
   end
 
   def categorized
+    flash.clear
     category = Category.find_by_name params[:name]
     @posts = category.posts.paginate :page => params[:page], :per_page => 12, :order => "ID desc"
 
@@ -82,12 +86,15 @@ class PostsController < ApplicationController
   end
 
   def search
+    flash.clear
+
     if params[:query]  # hackity
       redirect_to '/search/' + URI.escape(params[:query], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
       return
     else
 
-      unless params[:query] and params[:query].length > 0
+
+      unless params[:search] and params[:search].length > 0
         redirect_to root_path
         return
       end

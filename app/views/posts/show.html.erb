@@ -23,7 +23,7 @@
             <% end %>
 
 
-            <p>Category: <%= link_to(sanitize(@post.category.name), category_path(@post.category.name), :class => "menu") if @post.category %>
+            <p>Category: <%= link_to(sanitize(@post.category.name), categorized_path(@post.category.name), :class => "menu") if @post.category %>
 
             <% unless @post.tag_list.empty? %>
               <br/>Tags:
@@ -36,7 +36,7 @@
       </tr>
       <tr>
         <td valign=top width=225>
-            <fb:like href=<%= request.url %> width="225"></fb:like>
+            <fb:like width="225" show_faces="false"></fb:like>
         </td>
         <td valign=top>
           <div id=social_right_align>
