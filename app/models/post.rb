@@ -57,7 +57,11 @@ class Post < ActiveRecord::Base
 
 
   def self.last_post_time
-    Post.formatted_date Post.last.created_at
+    if Post.count > 0
+      Post.formatted_date Post.last.created_at
+    else
+      "NEVER!"
+    end
   end
 
   def formatted_created_at
