@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @post = Post.find params[:id], :include => [:category]
     create_similar_columns
 
-    flash[:error] = "The logic for similar is turned off, the below is only to show the layout" if RAILS_ENV == "production"
+    flash[:error] = "The logic for similar is turned off, the below is only to show the layout" if RAILS_ENV == "staging"
 
   end
 
@@ -101,7 +101,7 @@ class PostsController < ApplicationController
 
       per_page = 12
 
-      if RAILS_ENV == "production"
+      if RAILS_ENV == "staging"
         @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
         flash[:error] = "sorry, search is disabled here.  Showing regular home page"
       else
