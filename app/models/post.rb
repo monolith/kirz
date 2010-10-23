@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
 
 
   def similar
-    if RAILS_ENV == "production"
+    if RAILS_ENV == "staging"
       Post.all.first(7)
     else
 
