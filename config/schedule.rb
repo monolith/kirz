@@ -23,7 +23,7 @@ case RAILS_ENV
   when "production"
     RAILS_ROOT = "/var/www/apps/kirz/current"
   when "development"
-    RAILS_ROOT = "~/rails_apps/commune2"
+    RAILS_ROOT = "~/rails_apps/kirz"
   else
     environment_should_be_skipped = true
 end
