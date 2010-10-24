@@ -21,11 +21,11 @@
 
   every :reboot do
     # start up god monitoring
-    command "god start kirz -c #{path}/config/kirz.god"
+    command "god start kirz -c #{Whenever.path}/config/kirz.god"
   end
 
   every :sunday, :at => "5:00am" do
-    command "rm -rf #{path}/tmp/cache"
-    command "cd #{path} && rake ts:index RAILS_ENV=#{RAILS_ENV}"
+    command "rm -rf #{Whenever.path}/tmp/cache"
+    command "cd #{Whenever.path} && rake ts:index RAILS_ENV=production"
   end
 
