@@ -38,7 +38,7 @@ class Post < ActiveRecord::Base
       # only a subset will actually be displayed, i.e. 7
       # the below takes a randomized sample
 
-      count = all.count
+      count = all.size
 
       if count > 7
         random_positions = (0...count).to_a.sort_by{rand}.first(7).sort
