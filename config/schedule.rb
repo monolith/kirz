@@ -19,17 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-case RAILS_ENV
-  when "production"
-    RAILS_ROOT = "/var/www/apps/kirz/current"
-  when "development"
-    RAILS_ROOT = "~/rails_apps/kirz"
-  else
-    environment_should_be_skipped = true
-end
-
-unless environment_should_be_skipped # set above in the case statement
-
   every :reboot do
     # start up god monitoring
     command "god start kirz -c #{RAILS_ROOT}/config/kirz.god"
@@ -39,6 +28,4 @@ unless environment_should_be_skipped # set above in the case statement
     command "rm -rf #{RAILS_ROOT}/tmp/cache"
     command "cd #{RAILS_ROOT} && rake ts:index RAILS_ENV=#{RAILS_ENV}"
   end
-
-end
 
