@@ -19,13 +19,16 @@
 
 # Learn more: http://github.com/javan/whenever
 
+  path = "/var/www/apps/kirz/current"
+
   every :reboot do
     # start up god monitoring
-    command "god start kirz -c #{Whenever.path}/config/kirz.god"
+#    command "god start kirz -c #{Whenever.path}/config/kirz.god"
+    command "cd #{path} && RAILS_ENV=production rake ts:start"
   end
 
   every :sunday, :at => "5:00am" do
-    command "rm -rf #{Whenever.path}/tmp/cache"
-    command "cd #{Whenever.path} && rake ts:index RAILS_ENV=production"
+    command "rm -rf #{path}/tmp/cache"
+    command "cd #{path} && rake ts:index RAILS_ENV=production"
   end
 
