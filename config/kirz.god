@@ -1,3 +1,4 @@
+
 def generic_monitoring(w, options = {})
   w.start_if do |start|
     start.condition(:process_running) do |c|
@@ -32,11 +33,12 @@ def generic_monitoring(w, options = {})
 end
 
 
+
 # THINKING SPHINX
 
 God.watch do |w|
   script = "cd /var/www/apps/kirz/current && RAILS_ENV=production rake"
-  w.name = "kirz-thinking-sphinx"
+  w.name = "thinking-sphinx"
   w.group = "kirz"
   w.interval = 60.seconds
   w.start = "#{script} ts:start"
