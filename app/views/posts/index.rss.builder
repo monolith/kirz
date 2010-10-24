@@ -9,10 +9,10 @@ xml.rss :version => "2.0" do
     end
 
 
-    xml.title "Kirzhner"
-    xml.description "The posts of Alex Kirzhner"
+    xml.title "a.r.Kirzhner"
+    xml.description "The posts of Alex R Kirzhner"
     xml.link formatted_root_url
-    xml.copyright Time.now.utc.strftime("%Y") + " Alex Kirzhner"
+    xml.copyright Time.now.utc.strftime("%Y") + " Alex R Kirzhner"
 
 
     @posts.each do |post|
