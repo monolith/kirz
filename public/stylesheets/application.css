@@ -1,7 +1,7 @@
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #FFFAF0;
+  background-color: #FFFFFF;
 
   text-decoration: none;
   font-size:9pt;
@@ -97,7 +97,7 @@ a img {
   height: 118px;
   width: 100%;
   z-index: 2;
-  background-color: #FFFAF0;
+  background-color: #FFFFFF;
 }
 
 #searchBox {
@@ -134,7 +134,7 @@ a img {
 
   float: left;
   z-index: 3;
-  background-color: #FFFAF0;
+  background-color: #FFFFFF;
 }
 
 
@@ -149,7 +149,7 @@ a img {
   height: 100%;
   float: left;
   z-index: 3;
-  background-color: #FFFAF0;
+  background-color: #FFFFFF;
 
 }
 
@@ -260,7 +260,7 @@ form {
 input[type="text"], input[type="password"], input[type="checkbox"], textarea {
 
   border: 1px solid #6E6E6E;
-  background-color: #FFFAF0;
+  background-color: #FFFFFF;
   color: #6E6E6E
   padding: 2px;
 }
