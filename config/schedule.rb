@@ -23,7 +23,8 @@
 
   every :reboot do
     # start up god monitoring
-    command "god start kirz -c #{path}/config/kirz.god"
+#    command "god start kirz -c /var/www/apps/kirz/current/config/kirz.god"
+    command "cd #{path} && rake ts:start RAILS_ENV=production"
   end
 
   every :sunday, :at => "5:00am" do
