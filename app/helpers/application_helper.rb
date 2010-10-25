@@ -13,7 +13,8 @@ module ApplicationHelper
 
     x << "<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>"
 
-    x << link_to("home", root_path)
+    x << link_to("home", root_path) << "<br/>"
+    x << link_to("about", about_path)
     x
   end
 

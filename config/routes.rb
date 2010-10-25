@@ -29,6 +29,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.random_background "random_background", :controller => "background", :action => "random"
 
+  map.about "about", :controller => "/about", :action => "index"
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

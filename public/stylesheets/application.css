@@ -250,6 +250,18 @@ a.menu:hover {
 
 }
 
+#about_text {
+    margin: 0px;
+    padding: 0px;
+    padding-left: 7px;
+
+}
+
+#about_text p {
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 14px;
+}
 
 form {
   margin: 0px;
