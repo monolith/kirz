@@ -273,7 +273,9 @@ input[type="text"], input[type="password"], input[type="checkbox"], textarea {
 
   border: 1px solid #6E6E6E;
   background-color: #FFFFFF;
-  color: #6E6E6E
+  font-size:9pt;
+  font-family:helvetica,Sans Serif;
+  color: #6E6E6E;
   padding: 2px;
 }
 

@@ -32,7 +32,7 @@
         <div id=bar>
 
             <div id=searchBox>
-                <%= text_field_tag :query, @query, :size => 15 %>
+                <%= text_field_tag :query, @query, :size => 15, :value => "     search", :onfocus => "if(this.value==this.defaultValue) this.value='';" %>
                 <INPUT type="submit" class="searchButton" value="">
             </div>
             <div id=bar_social>
