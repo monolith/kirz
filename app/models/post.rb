@@ -22,7 +22,7 @@ class Post < ActiveRecord::Base
       Post.all.first(7)
     else
 
-      all = Post.search "#{tag_list.to_s}, #{category.name}, #{description}",
+      all = Post.search "#{tag_list.to_s}, #{category.name if category}, #{description}",
                   :include => [:category, :tags],
                   :field_weights => {
                     "tags" => 3,
