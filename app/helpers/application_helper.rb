@@ -10,11 +10,13 @@ module ApplicationHelper
     Category.menu_items.each do |category|
       x << link_to(category.name.upcase, categorized_path(category.name), :class => "menu") << tag("br")
 
-      if request.url.include? "categorized/#{category.name}"
+      if request.url.include? category.name
       # create sub menu
-        category.top_tags.each do |tag|
-          x << "- " << link_to(tag.name.downcase + " (" + tag.count.to_s + ")", tagged_with_path(tag.name) + "?category=" + category.name.downcase, :class=>"submenu") << "<br/>"
+        x << "<div id=submenu>"
+        category.top_tags.each_with_index do |tag,index|
+          x << link_to("- " + tag.name.downcase + " (" + tag.count.to_s + ")", tagged_with_path(tag.name) + "?category=" + category.name.downcase, :class=>"submenu") << "<br/>"
         end
+        x << "</div>"
       end
 
     end
