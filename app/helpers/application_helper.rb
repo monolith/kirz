@@ -14,7 +14,7 @@ module ApplicationHelper
       # create sub menu
         x << "<div id=submenu>"
         category.top_tags.each_with_index do |tag,index|
-          x << link_to("- " + tag.name.downcase + " (" + tag.count.to_s + ")", tagged_with_path(tag.name) + "?category=" + category.name.downcase, :class=>"submenu") << "<br/>"
+          x << link_to("- " + tag.name.upcase + " (" + tag.count.to_s + ")", tagged_with_path(tag.name) + "?category=" + category.name.downcase, :class=>"submenu") << "<br/>"
         end
         x << "</div>"
       end
