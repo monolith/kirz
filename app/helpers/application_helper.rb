@@ -8,7 +8,7 @@ module ApplicationHelper
   def menu
     x = ""
     Category.menu_items.each do |category|
-      x << link_to(category.name.upcase, categorized_path(category.name), :class => "menu") << tag("br")
+      x << link_to("+ " + category.name.upcase, categorized_path(category.name), :class => "menu") << tag("br")
 
       if request.url.include? category.name
       # create sub menu
