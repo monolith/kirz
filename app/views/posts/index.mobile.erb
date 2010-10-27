@@ -8,17 +8,7 @@
   <p><%= button_to "New Post", new_post_path, :method => :get %><br /></p>
 <% end %>
 
-  <table class=main>
-    <tr>
-      <% @column.each_with_index do |posts, index| %>
-        <td valign=top>
-          <div id="column_<%= index+1 %>">
-              <%= render :partial => 'post', :collection => posts  %>
-          </div>
-        </td>
-      <% end %>
-    </tr>
-  </table>
+  <%= render :partial => 'post.html.erb', :collection => @posts  %>
 
   <div id="pagination">
     <%= will_paginate @posts %>

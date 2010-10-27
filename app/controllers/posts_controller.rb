@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+#  has_mobile_fu(true)
+
   require 'uri'
 
   before_filter :login_required, :except => [:index, :show, :categorized, :tagged_with, :search ]
@@ -7,8 +9,7 @@ class PostsController < ApplicationController
 
 
   def index
-
-    flash.clear
+#    flash.clear
     per_page = 12
     @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
 
@@ -69,15 +70,22 @@ class PostsController < ApplicationController
 
 
   def tagged_with
-    flash.clear
-    @posts = Post.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 12, :order => "ID desc"
+#    flash.clear
+
+    if params[:category]
+      @category = Category.find_by_name params[:category]
+      category_id = @category ? @category.id : 0 # means nothing will be found since this will not exist
+      @posts = Post.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 12, :order => "ID desc", :conditions => ["category_id = ?", category_id]
+    else
+      @posts = Post.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 12, :order => "ID desc"
+    end
 
     create_columns
     render :index
   end
 
   def categorized
-    flash.clear
+ #   flash.clear
     category = Category.find_by_name params[:name]
     @posts = category.posts.paginate :page => params[:page], :per_page => 12, :order => "ID desc"
 
@@ -86,7 +94,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    flash.clear
+#    flash.clear
 
     if params[:query]  # hackity
       redirect_to '/search/' + URI.escape(params[:query], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
@@ -132,7 +140,6 @@ class PostsController < ApplicationController
     end
   end
 
-
 private
 
   def record_not_found
@@ -141,14 +148,16 @@ private
   end
 
   def create_columns
-    @column = Array.new
-    number_of_columns = 3
-    number_of_columns.times { @column << Array.new }
+#    unless is_mobile_device?
+      @column = Array.new
+      number_of_columns = 3
+      number_of_columns.times { @column << Array.new }
 
-    # creates a multidimentional array, with each array representing a column
-    @posts.each_with_index do | post, index |
-      @column[index%number_of_columns] << post
-    end
+      # creates a multidimentional array, with each array representing a column
+      @posts.each_with_index do | post, index |
+        @column[index%number_of_columns] << post
+      end
+#    end
 
   end
 

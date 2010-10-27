@@ -2,12 +2,12 @@ page[:pagination].hide
 page.replace_html :loading, :text => "Loading more page results..."
 
 
-@column.each_with_index do |posts, index|
-        page.insert_html :bottom,
-                         "column_#{ index+1 }",
-                         :partial => 'post', :collection => posts
-end
 
+  @column.each_with_index do |posts, index|
+          page.insert_html :bottom,
+                           "column_#{ index+1 }",
+                           :partial => 'post', :collection => posts
+  end
 
 if @posts.total_pages > @posts.current_page
   page.call 'checkScroll'

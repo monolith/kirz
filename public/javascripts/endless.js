@@ -11,13 +11,25 @@ function checkScroll() {
   if (nearBottomOfPage() && Ajax.activeRequestCount == 0 && !$('complete') && cycle > 1) {
     currentPage++;
     var url = new String();
-    url = window.location;
+    url = document.URL;
 
     if (window.location.pathname =="/") {
       url = url + "posts"
     }
 
-    new Ajax.Request(url + '.js?page=' + currentPage, {asynchronous:true, evalScripts:true, method:'get'});
+    var tmp = new Array();
+
+
+    tmp = url.split("?");
+
+    if (document.URL.indexOf("?") <0){
+      tmp[1] = "";
+    }
+    else {
+      tmp[1] = tmp[1] + "&";
+    }
+
+    new Ajax.Request(tmp[0] + '.js?'+ tmp[1] + 'page=' + currentPage, {asynchronous:true, evalScripts:true, method:'get'});
 
   } else {
     if (!$('complete')) {
