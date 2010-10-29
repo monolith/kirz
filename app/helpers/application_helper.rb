@@ -8,13 +8,13 @@ module ApplicationHelper
   def menu
     x = ""
     Category.menu_items.each do |category|
-      x << link_to("+ " +   category.name.upcase, categorized_path(category.name), :class => "menu") << tag("br")
+      x << link_to("&nbsp;+ " +   category.name.upcase + " ", categorized_path(category.name), :class => menu_class(category)) << "<br />"
 
-      if request.url.upcase.include? category.name.upcase
+      if in_url? category.name or (@post and @post.category == category)
       # create sub menu
         x << "<div id=submenu>"
         category.top_tags.each_with_index do |tag,index|
-          x << link_to("- " + tag.name.upcase + " (" + tag.count.to_s + ")", tagged_with_path(tag.name) + "?category=" + category.name.downcase, :class=>"submenu") << "<br/>"
+          x << link_to("&nbsp;- " + tag.name.upcase + " (" + tag.count.to_s + ") ", tagged_with_path(tag.name) + "?category=" + category.name.downcase, :class=>"submenu") << "<br/>"
         end
         x << "</div>"
       end
@@ -27,6 +27,20 @@ module ApplicationHelper
 
     x << link_to("home", root_path, :class => "menu")
     x
+  end
+
+  private
+
+  def menu_class(category)
+    if (@post and @post.category == category) or in_url? category.name
+      "menu_highlight"
+    else
+      "menu"
+    end
+  end
+
+  def in_url?(string)
+    request.url.upcase.include? string.upcase
   end
 
 end

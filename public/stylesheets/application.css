@@ -239,6 +239,11 @@ a.menu:hover {
   background-color: #CBCBCB;
 }
 
+a.menu_highlight {
+  background-color: #FF4848;
+  color: #FFF;
+}
+
 a.submenu {
   padding-left: 2px;
   font-size:8pt;
