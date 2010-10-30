@@ -36,10 +36,10 @@
 
 
   </head>
-  <body onload="menuEffects();">
+  <body>
 
     <div id=logo>
-      <%= link_to image_tag("logo.png"), root_path %>
+      <%= link_to image_tag("logo.png", :onload=>"menuEffects();"), root_path %>
     </div>
 
      <% form_tag search_path, :method => :get do %>
