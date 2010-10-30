@@ -20,11 +20,26 @@
     </script>
 
 
+    <script type="text/javascript">
+    function menuEffects(){
+      var submenuItems = $('submenu').select('a');
+      var highlightItems = $('submenu').select('[highlight="true"]');
+
+      new Effect.multiple(submenuItems, Effect.Move,
+      { x: 12, y: 0, mode: 'relative', transition: Effect.Transitions.spring, duration: 1.0 });
+
+      new Effect.multiple(highlightItems, Effect.Highlight,
+      {startcolor: "#D0E6FF", endcolor: "#FFFFFF", restorecolor: "#FFFFFF"});
+
+      return false;
+    }
+
+    </script>
   </head>
-  <body>
+  <body onload="menuEffects();">
 
     <div id=logo>
-      <%= link_to image_tag("logo.png", :onload => "var listItems = $('submenu').select('a'); new Effect.multiple(listItems, Effect.Move, { x: 12, y: 0, mode: 'relative', transition: Effect.Transitions.spring, duration: 1}, {queue: 'front'}); return false;"), root_path %>
+      <%= link_to image_tag("logo.png"), root_path %>
     </div>
 
      <% form_tag search_path, :method => :get do %>
