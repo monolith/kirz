@@ -9,8 +9,8 @@
 
     <script type="text/javascript">
     function menuEffects(){
-      var submenuItems = $('submenu').select('a');
-      var highlightItems = $('submenu').select('[highlight="true"]');
+      var submenuItems = $('menu').select('[class="submenu"]');
+      var highlightItems = $('menu').select('[highlight="true"]');
 
       new Effect.multiple(submenuItems, Effect.Move,
       { x: 12, y: 0, mode: 'relative', transition: Effect.Transitions.spring, duration: 1.0 });
