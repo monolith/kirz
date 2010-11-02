@@ -9,9 +9,16 @@ class PostsController < ApplicationController
 
 
   def index
-#    flash.clear
     per_page = 12
-    @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
+
+    @last_post = Post.last
+
+    if @last_post
+      redirect_to categorized_path(@last_post.category) #"/categorized/#{@last_post.category.name}"
+      return
+    else
+      @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
+    end
 
     create_columns
     render :index

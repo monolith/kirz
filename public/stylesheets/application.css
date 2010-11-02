@@ -244,9 +244,15 @@ a.menu_highlight {
   color: #FFF;
 }
 
-a.submenu {
+a.submenu, a.submenu_highlight {
   padding-left: 2px;
   font-size:8pt;
+
+}
+
+a.submenu_highlight {
+
+  background-color: #D0E6FF;
 
 }
 a.submenu:hover {

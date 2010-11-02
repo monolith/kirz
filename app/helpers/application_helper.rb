@@ -14,8 +14,16 @@ module ApplicationHelper
       # create sub menu
         x << "<div id=submenu>"
         category.top_tags.each_with_index do |tag,index|
-          x << link_to("&nbsp;- " + tag.name.upcase + " (" + tag.count.to_s + ") ", tagged_with_path(tag.name) + "?category=" + category.name.downcase, :class=>"submenu", :highlight=>highlight?(tag), :onmouseover=>"style.backgroundColor='#CBCBCB';",
-:onmouseout=>"style.backgroundColor='#FFFFFF'") << "<br/>"
+
+          if tag_should_be_highlighted(tag)
+            x << link_to("&nbsp;- " + tag.name.upcase + " (" + tag.count.to_s + ") ", tagged_with_path(tag.name) + "?category=" + category.name.downcase, :class=>"submenu_highlight", :highlight=>"true", :onmouseover=>"style.backgroundColor='#CBCBCB';",
+  :onmouseout=>"style.backgroundColor='#D0E6FF'") << "<br/>"
+
+          else
+            x << link_to("&nbsp;- " + tag.name.upcase + " (" + tag.count.to_s + ") ", tagged_with_path(tag.name) + "?category=" + category.name.downcase, :class=>"submenu", :highlight=>"false") << "<br/>"
+
+
+          end
         end
         x << "</div>"
       end
@@ -44,13 +52,15 @@ module ApplicationHelper
     request.url.upcase.include? string.upcase
   end
 
-  def highlight?(tag)
+
+  def tag_should_be_highlighted(tag)
     if (@post and @post.tags.include? tag) or in_url?(tag.name)
-      "true"
+      true
     else
-      "false"
+      false
     end
   end
+
 
   def category_tag_in_url?(category)
     category.top_tags.each do |tag|

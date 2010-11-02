@@ -10,13 +10,16 @@
     <script type="text/javascript">
     function menuEffects(){
       var submenuItems = $('menu').select('[class="submenu"]');
-      var highlightItems = $('menu').select('[highlight="true"]');
+      var highlightItems = $('menu').select('[class="submenu_highlight"]');
 
       new Effect.multiple(submenuItems, Effect.Move,
       { x: 12, y: 0, mode: 'relative', transition: Effect.Transitions.spring, duration: 1.0 });
 
+      new Effect.multiple(highlightItems, Effect.Move,
+      { x: 12, y: 0, mode: 'relative', transition: Effect.Transitions.spring, duration: 1.0 });
+
       new Effect.multiple(highlightItems, Effect.Highlight,
-      {startcolor: "#D0E6FF", endcolor: "#FFFFFF", restorecolor: "#FFFFFF"});
+      {endcolor: "#D0E6FF", restorecolor: "#D0E6FF"});
 
       return false;
     }
