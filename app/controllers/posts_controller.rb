@@ -11,11 +11,11 @@ class PostsController < ApplicationController
   def index
     per_page = 12
 
-    @last_post = Post.last
+    last_post = Post.last
 
-    if @last_post
-      redirect_to categorized_path(@last_post.category) #"/categorized/#{@last_post.category.name}"
-      return
+    if last_post
+      @category = last_post.category
+      @posts = @category.posts.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
     else
       @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
     end

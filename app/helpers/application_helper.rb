@@ -10,7 +10,7 @@ module ApplicationHelper
     Category.menu_items.each_with_index do |category, index|
       x << link_to("&nbsp;+ " +   category.name.upcase + " ", categorized_path(category.name), :class => menu_class(category)) << "<br />"
 
-      if in_url? category.name or (@post and @post.category == category) or (in_url? "tagged_with" and category_tag_in_url?(category) and not in_url? "category")
+      if in_url? category.name or (@post and @post.category == category) or (in_url? "tagged_with" and category_tag_in_url?(category) and not in_url? "category") or (@category and @category == category)
       # create sub menu
         x << "<div id=submenu>"
         category.top_tags.each_with_index do |tag,index|
@@ -41,7 +41,7 @@ module ApplicationHelper
   private
 
   def menu_class(category)
-    if (@post and @post.category == category) or in_url? category.name
+    if (@post and @post.category == category) or in_url? category.name or (@category and @category == category)
       "menu_highlight"
     else
       "menu"
