@@ -92,9 +92,9 @@ a img {
   margin-top: 0px;
 	padding: 0px;
 	position: fixed;
-  top: 27px;
+  top: 0px;
   left: 0px;
-  height: 118px;
+  height: 145px;
   width: 100%;
   z-index: 2;
   background-color: #FFFFFF;
@@ -102,30 +102,24 @@ a img {
 
 #searchBox {
   margin: 0px;
-  margin-top: 90px;
-  width: 1035px;
+  margin-top: 0px;
   padding: 0px;
-  padding-left: 7px;
-  text-align: right;
-  float: left;
+  padding-left: 42px;
 }
 
 
 #bar_social {
   margin: 0px;
-  margin-top: 80px;
-  margin-left: 1049px;
   padding: 0px;
+  padding-left: 44px;
   border: none;
-  width: 50px;
-  float:left;
-  position:fixed;
 }
 
 
 #time {
   margin-top: 0px;
 	padding: 0px;
+	padding-left: 36px;
 	position: fixed;
   top: 100px;
   left: 241px;
@@ -160,10 +154,14 @@ a img {
   margin-left: 22px;
   margin-top: 7px;
 }
+#bar_social img {
+  margin-left: 0px;
+  margin-top: 0px;
+}
 #menu {
   text-align: left;
   margin-left: 44px;
-  margin-top: 82px;
+  margin-top: 20px;
   line-height: 11pt;
 	padding: 0px;
   padding-left: 0px;
@@ -282,6 +280,20 @@ a.submenu:hover {
   padding: 0px;
   padding-bottom: 14px;
 }
+
+#description {
+    margin: 0px;
+    margin-top: -4px;
+    padding: 0px;
+    padding-left: 20px;
+
+}
+
+#description p {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
 
 form {
   margin: 0px;

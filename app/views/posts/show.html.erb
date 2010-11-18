@@ -16,9 +16,14 @@
 
     <table cellspacing=0 cellpadding=0 border=0>
       <tr>
-        <td colspan=2>
-            <%= image_tag(@post.image.url) %>
+        <td valign=top colspan=2>
+           <%= image_tag(@post.image.url) %>
+           <br /><br />
+        </td>
 
+        <td valign=top rowspan=2>
+
+          <div id=description>
             <% if @post.description and @post.description.length > 0 %>
               <p><%= sanitize(@post.description) %></p>
             <% end %>
@@ -32,7 +37,8 @@
                   <%= link_to sanitize(tag), tagged_with_path(tag), :class => "menu" %><%= index + 1 == @post.tags.count ? "" : "," %>
                 <% end %>
             <% end %>
-          </p>
+            </p>
+          </div>
         </td>
       </tr>
       <tr>

@@ -30,9 +30,9 @@ module ApplicationHelper
 
     end
 
-    x << "<br/><br/><br/><br/><br/><br/>"
+    x << "<br/>"
 
-    x << link_to("about / contact", about_path, :class => "menu") << "<br/><br/><br/><br/>"
+    x << link_to("about | contact", about_path, :class => "menu") << "<br/>"
 
     x << link_to("home", root_path, :class => "menu")
     x

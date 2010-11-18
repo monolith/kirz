@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
-    <title>a.r.Kirzhner - <%= h(yield(:title)) %></title>
+    <title>Alex R. Kirzhner - <%= h(yield(:title)) %></title>
     <%= stylesheet_link_tag 'application' %>
     <%= yield(:head) %>
 
@@ -45,24 +45,10 @@
       <%= link_to image_tag("logo.png", :onload=>"menuEffects();"), root_path %>
     </div>
 
-     <% form_tag search_path, :method => :get do %>
 
         <div id=bar>
 
-            <div id=searchBox>
-                <%= text_field_tag :query, @query, :size => 15, :value => "     search", :onfocus => "if(this.value==this.defaultValue) this.value='';" %>
-                <INPUT type="submit" class="searchButton" value="">
-            </div>
-            <div id=bar_social>
-                <p><a href="http://feeds.feedburner.com/Kirzhner" rel="alternate" type="application/rss+xml"><%= image_tag "icons/rss.png" %></a>
-
-                <a href="http://www.facebook.com/people/Alex-R-Kirzhner/100001820013868" target="_TOP"><%= image_tag "icons/fb.png", :alt => "a.r.kirzhner" %></a></p>
-
-
-            </div>
         </div>
-
-      <% end %>
 
       <div id="container">
 
@@ -76,7 +62,28 @@
 
                 <div id=menu>
                   <%= menu %>
+
                 </div>
+
+                <div id=searchBox>
+                  <br />
+                  <% form_tag search_path, :method => :get do %>
+                    <%= text_field_tag :query, @query, :size => 15, :value => "     search", :onfocus => "if(this.value==this.defaultValue) this.value='';" %>
+                    <INPUT type="submit" class="searchButton" value="">
+
+                  <% end %>
+                </div>
+
+                <div id=bar_social>
+                    <a href="http://feeds.feedburner.com/Kirzhner" rel="alternate" type="application/rss+xml"><%= image_tag "icons/rss.png" %></a>
+
+                    <a href="http://www.facebook.com/people/Alex-R-Kirzhner/100001820013868" target="_TOP"><%= image_tag "icons/fb.png", :alt => "a.r.kirzhner" %></a>
+
+
+                </div>
+
+
+
               </td>
             </tr>
             <tr>
