@@ -14,6 +14,12 @@
   <p>this post was made<br/>on <%= @post.formatted_created_at %></p>
 </div>
 
+<% height = @post.dimensions.height / 2 - 33 %>
+
+<div id=previous style="margin-left: -53px; margin-top: <%= height %>px;"><%= link_to(image_tag('icons/prev_button.png', :mouseover => 'icons/prev_button_over.png'), post_path(@previous)) if @previous %></div>
+
+<div id=next style="margin-left: <%= @post.dimensions.width + 21 %>px; margin-top: <%= height %>px;"><%= link_to(image_tag('icons/next_button.png',  :mouseover => 'icons/next_button_over.png'), post_path(@next)) if @next %></div>
+
     <table cellspacing=0 cellpadding=0 border=0>
       <tr>
         <td valign=top colspan=2>

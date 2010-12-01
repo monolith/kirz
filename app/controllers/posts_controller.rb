@@ -30,6 +30,9 @@ class PostsController < ApplicationController
     @post = Post.find params[:id], :include => [:category]
     create_similar_columns
 
+    @previous = @post.previous
+    @next = @post.next
+
     flash[:error] = "The logic for similar is turned off, the below is only to show the layout" if RAILS_ENV == "staging"
 
   end

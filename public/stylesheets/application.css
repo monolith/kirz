@@ -96,9 +96,17 @@ a img {
   left: 0px;
   height: 145px;
   width: 100%;
-  z-index: 2;
+  z-index: 4;
   background-color: #FFFFFF;
 }
+
+#previous, #next {
+  margin: 0px;
+	padding: 0px;
+	position: absolute;
+  z-index: 3;
+}
+
 
 #searchBox {
   margin: 0px;
@@ -127,7 +135,7 @@ a img {
   width: 365px;
 
   float: left;
-  z-index: 3;
+  z-index: 5;
   background-color: #FFFFFF;
 }
 

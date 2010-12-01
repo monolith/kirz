@@ -86,6 +86,23 @@ class Post < ActiveRecord::Base
     t.strftime('%B %d, %Y').downcase
   end
 
+
+  def dimensions
+
+     geo = Paperclip::Geometry.from_file(image.to_file(:original))
+
+     return geo
+  end
+
+
+  def next
+    Post.find :first, :conditions => ['id > ?', id], :order => "id"
+  end
+
+  def previous
+    Post.find :first, :conditions => ['id < ?', id], :order => "id DESC"
+  end
+
   # SEARCHING INDEXING
   define_index do
     # fields
