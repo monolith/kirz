@@ -102,6 +102,7 @@ a img {
 
 #previous, #next {
   margin: 0px;
+  margin-top: 183px;
 	padding: 0px;
 	position: absolute;
   z-index: 3;
