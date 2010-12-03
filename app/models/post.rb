@@ -26,15 +26,15 @@ class Post < ActiveRecord::Base
                   :include => [:category, :tags],
                   :field_weights => {
                     "tags" => 3,
-                    "category" => 2,
-                    "description" => 1
+                    "category" => 1,
+                    "description" => 5
                   },
                   :match_mode => :any,
                   :without => {:id => id}, # should not find self
                   :order => "@relevance DESC, created_at DESC",
-                 :limit => 30
+                 :limit => 14
 
-      # the above can return up to 30 results (whatever is set in the limit)
+      # the above can return more results than what we need (whatever is set in the limit)
       # only a subset will actually be displayed, i.e. 7
       # the below takes a randomized sample
 
