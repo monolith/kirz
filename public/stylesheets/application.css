@@ -104,8 +104,8 @@ a img {
   margin: 0px;
   margin-top: 183px;
 	padding: 0px;
-	position: absolute;
-  z-index: 10;
+	position: fixed;
+  z-index: 6;
 }
 
 
