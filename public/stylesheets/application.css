@@ -84,28 +84,31 @@ a img {
 	position: fixed;
   top: 7px;
   left: 7px;
-  z-index: 5;
+  z-index: 11;
+  background-color: #FFFFFF;
 
 }
 
 #bar {
   margin-top: 0px;
+  margin-left: 250px;
 	padding: 0px;
 	position: fixed;
   top: 0px;
   left: 0px;
   height: 145px;
   width: 100%;
-  z-index: 4;
+  z-index: 10;
   background-color: #FFFFFF;
+  overflow: hidden;
 }
 
 #previous, #next {
   margin: 0px;
   margin-top: 183px;
 	padding: 0px;
-	position: fixed;
-  z-index: 6;
+	position: absolute;
+  z-index: 5;
 }
 
 
@@ -136,7 +139,7 @@ a img {
   width: 365px;
 
   float: left;
-  z-index: 5;
+  z-index: 11;
   background-color: #FFFFFF;
 }
 
