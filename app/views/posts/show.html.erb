@@ -14,9 +14,9 @@
   <p>this post was made<br/>on <%= @post.formatted_created_at %></p>
 </div>
 
-<div id=previous style="margin-left: -39px;"><%= link_to(image_tag('icons/prev_button.png', :mouseover => 'icons/prev_button_over.png'), post_path(@previous)) if @previous %></div>
+<div id=previous style="margin-left: <%= @post.dimensions.width + 7 %>px;"><%= link_to(image_tag('icons/prev_button.png', :mouseover => 'icons/prev_button_over.png'), post_path(@previous)) if @previous %></div>
 
-<div id=next style="margin-left: <%= @post.dimensions.width + 7 %>px;"><%= link_to(image_tag('icons/next_button.png',  :mouseover => 'icons/next_button_over.png'), post_path(@next)) if @next %></div>
+<div id=next style="margin-left: -39px;" ><%= link_to(image_tag('icons/next_button.png',  :mouseover => 'icons/next_button_over.png'), post_path(@next)) if @next %></div>
 
     <table cellspacing=0 cellpadding=0 border=0>
       <tr>
