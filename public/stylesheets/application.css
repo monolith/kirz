@@ -224,6 +224,13 @@ table.main td {
 
 }
 
+.newthumb {
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+
+}
+
 
 .thumb img {
   border: 0;

@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-  has_attached_file :image, :styles => { :small => "250x>", :thumb => "128x>" },
+  has_attached_file :image, :styles => { :small => "250x>", :thumb => "128x>", :largecrop => "507x375#" },
                   :url  => "/assets/posts/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/posts/:id/:style/:basename.:extension"
 
@@ -87,9 +87,9 @@ class Post < ActiveRecord::Base
   end
 
 
-  def dimensions
-
-     geo = Paperclip::Geometry.from_file(image.to_file(:original))
+  def dimensions(options={})
+     size = options[:size] || :original
+     geo = Paperclip::Geometry.from_file(image.to_file(size))
 
      return geo
   end

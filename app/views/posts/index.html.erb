@@ -1,5 +1,5 @@
 <% title "home" %>
-<% javascript :defaults, 'endless' %>
+<%# javascript :defaults, 'endless' %>
 
 <div id=time>
   <p>the latest post was made<br/>on <%= Post.last_post_time %></p>
@@ -7,6 +7,14 @@
 <% if logged_in? %>
   <p><%= button_to "New Post", new_post_path, :method => :get %><br /></p>
 <% end %>
+
+<div id="galleryContainer" style="position:relative;">
+  <div id="gallery">
+    <%= gallery %>
+  </div>
+</div>
+
+<!---
 
   <table class=main>
     <tr>
@@ -20,8 +28,5 @@
     </tr>
   </table>
 
-  <div id="pagination">
-    <%= will_paginate @posts %>
-  </div>
-  <div id=loading></div>
+//-->
 
