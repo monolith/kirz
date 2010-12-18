@@ -11,6 +11,8 @@ module PostsHelper
 
     tmp = ""
 
+    skip = 0            # to make sure two don't appear close to each other
+
     @posts.each do |post|
 
       x = @positions[@nextColumn]["x"]
@@ -18,24 +20,34 @@ module PostsHelper
 
 
       size = :small
-      skipColumn = false
+      skipColumn = false  # because large images takes up more than one column
 
-      if post.largecrop and @nextColumn != "column3" and rand(10) > 5
+
+      if @nextColumn != "column3" and rand(10) > 4
         case @nextColumn
           when "column1"
             if @positions["column1"]["y"] == @positions["column2"]["y"]
-              size = :largecrop
-              @positions["column2"]["y"] = y + post.dimensions(:size => size).height + 7
-              skipColumn = true
+              if skip == 0
+                size = :original
+                @positions["column2"]["y"] = y + post.dimensions(:size => size).height + 7
+                skipColumn = true
+                skip = 2
+              else
+                skip = skip - 1
+              end
             end
           when "column2"
             if @positions["column2"]["y"] == @positions["column3"]["y"]
-              size = :largecrop
-              @positions["column3"]["y"] = y + post.dimensions(:size => size).height + 7
-              skipColumn = true
+              if skip == 0
+                size = :original
+                @positions["column3"]["y"] = y + post.dimensions(:size => size).height + 7
+                skipColumn = true
+                skip = 2
+              else
+                skip = skip - 1
+              end
             end
         end
-
       end
 
       @positions[@nextColumn]["y"] = y + post.dimensions(:size => size).height + 7
@@ -53,7 +65,6 @@ module PostsHelper
 
 
       @positions.each_pair do |key, position|
-        debugger
         if @positions[@nextColumn]["y"] > position["y"]
           @longest = @nextColumn # for pagination
           @nextColumn = key
