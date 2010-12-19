@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-  has_attached_file :image, :styles => { :small => "250x>", :thumb => "128x>", :largecrop => "507x375#" },
+  has_attached_file :image, :styles => { :small_landscape => "250x184#", :small_portfolio => "250x375#", :thumb => "128x>", :largecrop => "507x375#" },
                   :url  => "/assets/posts/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/posts/:id/:style/:basename.:extension"
 
@@ -101,6 +101,16 @@ class Post < ActiveRecord::Base
 
   def previous
     Post.find :first, :conditions => ['id < ?', id], :order => "id DESC"
+  end
+
+  def small
+    d = dimensions
+
+    if largecrop # backward compatibility check
+      d.height > d.width ? :small_portfolio : :small_landscape
+    else
+      :small
+    end
   end
 
   # SEARCHING INDEXING

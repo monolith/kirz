@@ -20,7 +20,8 @@ module PostsHelper
       y = @positions[@nextColumn]["y"]
 
 
-      size = :small
+      size = post.small
+
       skipColumn = false  # because large images takes up more than one column
 
 
