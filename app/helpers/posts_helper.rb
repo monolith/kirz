@@ -30,7 +30,7 @@ module PostsHelper
           when "column1"
             if @positions["column1"]["y"] == @positions["column2"]["y"]
               if skip == 0
-                size = :largecrop
+                size = post.large
                 @positions["column2"]["y"] = y + post.dimensions(:size => size).height + 7
                 skipColumn = true
                 skip = 2
@@ -41,7 +41,7 @@ module PostsHelper
           when "column2"
             if @positions["column2"]["y"] == @positions["column3"]["y"]
               if skip == 0
-                size = :largecrop
+                size = post.large
                 @positions["column3"]["y"] = y + post.dimensions(:size => size).height + 7
                 skipColumn = true
                 skip = 2

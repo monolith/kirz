@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-  has_attached_file :image, :styles => { :small_landscape => "250x184#", :small_portfolio => "250x375#", :thumb => "128x>", :largecrop => "507x375#" },
+  has_attached_file :image, :styles => { :small_landscape => "250x184#", :small_portfolio => "250x375#", :thumb => "128x>", :largecrop_landscape => "507x375#", :largecrop_portfolio => "507x566#" },
                   :url  => "/assets/posts/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/posts/:id/:style/:basename.:extension"
 
@@ -111,6 +111,11 @@ class Post < ActiveRecord::Base
     else
       :small
     end
+  end
+
+  def large
+      d = dimensions
+      d.height > d.width ? :largecrop_portfolio : :largecrop_landscape
   end
 
   # SEARCHING INDEXING
