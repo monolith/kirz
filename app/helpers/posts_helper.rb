@@ -10,6 +10,7 @@ module PostsHelper
     @nextColumn = "column1"
 
     tmp = ""
+    @longest = "column1"
 
     skip = 0            # to make sure two don't appear close to each other
 
@@ -23,12 +24,12 @@ module PostsHelper
       skipColumn = false  # because large images takes up more than one column
 
 
-      if @nextColumn != "column3" and rand(10) > 4
+      if @nextColumn != "column3" and post.largecrop and rand(10) > 4
         case @nextColumn
           when "column1"
             if @positions["column1"]["y"] == @positions["column2"]["y"]
               if skip == 0
-                size = :original
+                size = :largecrop
                 @positions["column2"]["y"] = y + post.dimensions(:size => size).height + 7
                 skipColumn = true
                 skip = 2
@@ -39,7 +40,7 @@ module PostsHelper
           when "column2"
             if @positions["column2"]["y"] == @positions["column3"]["y"]
               if skip == 0
-                size = :original
+                size = :largecrop
                 @positions["column3"]["y"] = y + post.dimensions(:size => size).height + 7
                 skipColumn = true
                 skip = 2
@@ -92,7 +93,7 @@ module PostsHelper
     tmp << (@positions[@longest]["y"] + 7).to_s << "px;'>"
 
     tmp << will_paginate(@posts) if @posts.total_entries > @posts.count # checks first if pagination is needed
-    # the check needed here in order to avoid an error (this is a workaround)
+#     the check needed here in order to avoid an error (this is a workaround)
 
     tmp << "</div><div id=loading style='position: absolute; top:"
     tmp << (@positions[@longest]["y"] + 27).to_s << "px;'></div>"
