@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
 
   def index
-    per_page = 12
+    per_page = 100
 
     last_post = Post.last
 
