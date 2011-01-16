@@ -7,8 +7,11 @@
 
     </td>
     <td valign=top>
-      <p><strong>CURRENT IMAGE (THUMB)</strong></p>
+      <p><strong>CURRENT IMAGE (small)</strong></p>
       <%= image_tag(@post.image.url(:small)) %>
+      <p><strong>CURRENT IMAGE (large crop)</strong></p>
+      <%= image_tag(@post.image.url(:largecrop)) %>
+
     </td>
   </tr>
 </table>

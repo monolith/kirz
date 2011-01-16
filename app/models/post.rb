@@ -1,8 +1,11 @@
 class Post < ActiveRecord::Base
 
-  has_attached_file :image, :styles => { :small_landscape => "250x184#", :small_portfolio => "250x375#", :thumb => "128x>", :largecrop_landscape => "507x375#", :largecrop_portfolio => "507x566#" },
-                  :url  => "/assets/posts/:id/:style/:basename.:extension",
-                  :path => ":rails_root/public/assets/posts/:id/:style/:basename.:extension"
+  # :small_landscape => "250x184#", :small_portfolio => "250x375#", :thumb => "128x>", :largecrop_landscape => "507x375#", :largecrop_portfolio => "507x566#"
+  has_attached_file :image, :styles => {  :small => {:geometry => "250x>", :processors => [:smallcropper] },
+                                          :thumb => "128x>",
+                                          :largecrop =>  {:geometry => "764x767", :processors => [:largecropper]} },
+                    :url  => "/assets/posts/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/posts/:id/:style/:basename.:extension"
 
   validates_presence_of :category
   validates_attachment_presence :image
@@ -14,7 +17,10 @@ class Post < ActiveRecord::Base
 
   belongs_to :category
 
-  attr_accessible :description, :image, :tag_list, :category_id
+  attr_accessor :largecrop_x, :largecrop_y, :largecrop_w, :largecrop_h, :largecrop_resize_width, :smallcrop_x, :smallcrop_y, :smallcrop_w, :smallcrop_h
+  attr_accessible :description, :image, :tag_list, :category_id, :largecrop_x, :largecrop_y, :largecrop_w, :largecrop_h, :largecrop_resize_width, :smallcrop_x, :smallcrop_y, :smallcrop_w, :smallcrop_h
+
+  after_update :reprocess_image, :if => :cropping?
 
 
   def similar
@@ -94,6 +100,11 @@ class Post < ActiveRecord::Base
      return geo
   end
 
+  def image_geometry(style = :original)
+    # probably should refactor this with dimensions
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(image.path(style))
+  end
 
   def next
     Post.find :first, :conditions => ['id > ?', id], :order => "id"
@@ -103,19 +114,30 @@ class Post < ActiveRecord::Base
     Post.find :first, :conditions => ['id < ?', id], :order => "id DESC"
   end
 
-  def small
-    d = dimensions
+#  def small
+#    d = dimensions
 
-    if largecrop # backward compatibility check
-      d.height > d.width ? :small_portfolio : :small_landscape
-    else
-      :small
-    end
+#    if largecrop # backward compatibility check
+#      d.height > d.width ? :small_portfolio : :small_landscape
+#    else
+#      :small
+#    end
+#  end
+
+#  def large
+#      d = dimensions
+#      d.height > d.width ? :largecrop_portfolio : :largecrop_landscape
+#  end
+
+  def cropping?
+    !largecrop_x.blank? && !largecrop_y.blank? && !largecrop_w.blank? && !largecrop_h.blank?
   end
 
-  def large
-      d = dimensions
-      d.height > d.width ? :largecrop_portfolio : :largecrop_landscape
+
+  private
+
+  def reprocess_image
+    image.reprocess!
   end
 
   # SEARCHING INDEXING

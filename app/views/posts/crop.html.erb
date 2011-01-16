@@ -1,0 +1,143 @@
+<% title "Cropmaster 2000" %>
+<% content_for(:head) do %>
+  <%= stylesheet_link_tag "jquery.Jcrop" %>
+  <%= javascript_include_tag "jquery-1.4.4.min" %>
+  <%= javascript_include_tag "jquery.Jcrop.min" %>
+
+
+  <script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    var api = $.Jcrop('#largecropbox', {
+      onChange: update_largecrop,
+      onSelect: update_largecrop,
+      setSelect: [0, 0, 507, 375]
+    });
+
+    var api2 = $.Jcrop('#smallcropbox', {
+      onChange: update_smallcrop,
+      onSelect: update_smallcrop,
+      setSelect: [0, 0, 250, 184]
+    });
+
+
+    $('#250x184').click(function() {
+       api.animateTo([ 0,0,250,184 ]);
+    });
+    $('#250x375').click(function() {
+       api.animateTo([ 0,0,250,375 ]);
+    });
+    $('#250x566').click(function() {
+       api.animateTo([ 0,0,250,566 ]);
+    });
+    $('#250x757').click(function() {
+       api.animateTo([ 0,0,250,757 ]);
+    });
+
+    $('#507x184').click(function() {
+       api.animateTo([ 0,0,507,184 ]);
+    });
+    $('#507x375').click(function() {
+       api.animateTo([ 0,0,507,375 ]);
+    });
+    $('#507x566').click(function() {
+       api.animateTo([ 0,0,507,566 ]);
+    });
+    $('#507x757').click(function() {
+       api.animateTo([ 0,0,507,757 ]);
+    });
+
+    $('#764x184').click(function() {
+       api.animateTo([ 0,0,764,184 ]);
+    });
+    $('#764x375').click(function() {
+       api.animateTo([ 0,0,764,375 ]);
+    });
+    $('#764x566').click(function() {
+       api.animateTo([ 0,0,764,566 ]);
+    });
+    $('#764x757').click(function() {
+       api.animateTo([ 0,0,764,757 ]);
+    });
+
+    $('#250x184sm').click(function() {
+       api2.animateTo([ 0,0,250,184 ]);
+    });
+    $('#250x375sm').click(function() {
+       api2.animateTo([ 0,0,250,375 ]);
+    });
+
+
+  });
+
+  function update_largecrop(coords) {
+    var rx = 100/coords.w;
+    var ry = 100/coords.h;
+    var ratio = <%= @post.image_geometry(:original).width %> / <%= @post.image_geometry(:largecrop).width %>;
+    $("#largecrop_x").val(Math.round(coords.x * ratio));
+    $("#largecrop_y").val(Math.round(coords.y * ratio));
+    $("#largecrop_w").val(Math.round(coords.w * ratio));
+    $("#largecrop_h").val(Math.round(coords.h * ratio));
+    $("#largecrop_resize_width").val(Math.round(coords.w));
+  }
+
+
+  function update_smallcrop(coords) {
+    var rx = 100/coords.w;
+    var ry = 100/coords.h;
+    var ratio = <%= @post.image_geometry(:original).width %> / <%= @post.image_geometry(:small).width %>;
+    $("#smallcrop_x").val(Math.round(coords.x * ratio));
+    $("#smallcrop_y").val(Math.round(coords.y * ratio));
+    $("#smallcrop_w").val(Math.round(coords.w * ratio));
+    $("#smallcrop_h").val(Math.round(coords.h * ratio));
+  }
+
+
+  </script>
+<% end %>
+
+<table border=0>
+
+  <tr>
+    <td valign=top>
+          <%= image_tag @post.image.url(:small), :id => "smallcropbox" %>
+    </td>
+    <td valign=top>
+      <input type=submit id="250x184sm" value="250x184" <%= disableIfSmallerThan :size => :small, :width => 250, :height => 184 %> >
+      <input type=submit id="250x375sm" value="250x375" <%= disableIfSmallerThan :size => :small, :width => 250, :height => 375 %> >
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      <%= image_tag @post.image.url(:largecrop), :id => "largecropbox" %>
+    </td>
+    <td valign=top>
+
+      <input type=submit id="250x184" value="250x184" <%= disableIfSmallerThan :size => :largecrop, :width => 250, :height => 184 %> >
+      <input type=submit id="507x184" value="507x184" <%= disableIfSmallerThan :size => :largecrop, :width => 507, :height => 184 %> >
+      <input type=submit id="764x184" value="764x184" <%= disableIfSmallerThan :size => :largecrop, :width => 764, :height => 184 %> >
+<br />
+      <input type=submit id="250x375" value="250x375" <%= disableIfSmallerThan :size => :largecrop, :width => 250, :height => 374 %> >
+      <input type=submit id="507x375" value="507x375" <%= disableIfSmallerThan :size => :largecrop, :width => 507, :height => 374 %> >
+      <input type=submit id="764x375" value="764x375" <%= disableIfSmallerThan :size => :largecrop, :width => 764, :height => 374 %> >
+<br />
+      <input type=submit id="250x566" value="250x566" <%= disableIfSmallerThan :size => :largecrop, :width => 250, :height => 566 %> >
+      <input type=submit id="507x566" value="507x566" <%= disableIfSmallerThan :size => :largecrop, :width => 507, :height => 566 %> >
+      <input type=submit id="764x566" value="764x566" <%= disableIfSmallerThan :size => :largecrop, :width => 764, :height => 566 %> >
+<br />
+      <input type=submit id="250x757" value="250x757" <%= disableIfSmallerThan :size => :largecrop, :width => 250, :height => 757 %> >
+      <input type=submit id="507x757" value="507x757" <%= disableIfSmallerThan :size => :largecrop, :width => 507, :height => 757 %> >
+      <input type=submit id="764x757" value="764x757" <%= disableIfSmallerThan :size => :largecrop, :width => 764, :height => 757 %> >
+
+<br /><br />
+
+
+      <% form_for @post do |f| %>
+        <% for attribute in [:largecrop_x, :largecrop_y, :largecrop_w, :largecrop_h, :largecrop_resize_width, :smallcrop_x, :smallcrop_y, :smallcrop_w, :smallcrop_h] %>
+          <%= f.hidden_field attribute, :id => attribute %>
+        <% end %>
+        <p><%= f.submit "Crop" %></p>
+      <% end %>
+    </td>
+  </tr>
+</table>
+

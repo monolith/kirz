@@ -19,38 +19,117 @@ module PostsHelper
       x = @positions[@nextColumn]["x"]
       y = @positions[@nextColumn]["y"]
 
-
-      size = post.small
+      size = :small
 
       skipColumn = false  # because large images takes up more than one column
 
 
-      if @nextColumn != "column3" and post.largecrop and rand(10) > 4
+      if post.largecrop and rand(10) > 4
+        dimensions = post.dimensions(:size => :largecrop)
+
+        colspan = 1
+        if dimensions.width > 507
+          colspan=3
+        elsif dimensions.width > 250
+          colspan=2
+        end
+
         case @nextColumn
           when "column1"
-            if @positions["column1"]["y"] == @positions["column2"]["y"]
-              if skip == 0
-                size = post.large
-                @positions["column2"]["y"] = y + post.dimensions(:size => size).height + 7
-                skipColumn = true
-                skip = 2
-              else
-                skip = skip - 1
-              end
+
+            case colspan
+              when 1
+
+                if skip == 0
+                  size = :largecrop
+                  skipColumn = true
+                  # to reduce occurance of large crops showing up close to each other
+                  skip = 2
+                else
+                  skip = skip - 1
+                end
+
+              when 2
+                if @positions["column1"]["y"] == @positions["column2"]["y"]
+                  if skip == 0
+                    size = :largecrop
+                    @positions["column2"]["y"] = y + dimensions.height + 7
+                    skipColumn = true
+
+                    # to reduce occurance of large crops showing up close to each other
+                    skip = 2
+                  else
+                    skip = skip - 1
+                  end
+
+                end
+              when 3
+
+                if @positions["column1"]["y"] == @positions["column2"]["y"] and @positions["column2"]["y"] == @positions["column3"]["y"]
+                  if skip == 0
+                    size = :largecrop
+                    @positions["column2"]["y"] = y + dimensions.height + 7
+                    @positions["column3"]["y"] = y + dimensions.height + 7
+
+                    skipColumn = true
+
+                    # to reduce occurance of large crops showing up close to each other
+                    skip = 2
+                  else
+                    skip = skip - 1
+                  end
+                end
+
             end
+
+
           when "column2"
-            if @positions["column2"]["y"] == @positions["column3"]["y"]
+            case colspan
+              when 1
+                if skip == 0
+                  size = :largecrop
+                  skipColumn = true
+                  # to reduce occurance of large crops showing up close to each other
+                  skip = 2
+                else
+                  skip = skip - 1
+                end
+
+              when 2
+
+                if @positions["column2"]["y"] == @positions["column3"]["y"]
+                  if skip == 0
+                    size = :largecrop
+
+                    @positions["column3"]["y"] = y + dimensions.height + 7
+                    skipColumn = true
+
+                    # to reduce occurance of large crops showing up close to each other
+                    skip = 2
+                  else
+                    skip = skip - 1
+                  end
+                end
+
+                # nothing if colspan is 3, no room!
+            end
+
+          when "column3"
+
+            if colspan == 1 # else too big to include in this column
               if skip == 0
-                size = post.large
-                @positions["column3"]["y"] = y + post.dimensions(:size => size).height + 7
+                size = :largecrop
                 skipColumn = true
                 skip = 2
               else
-                skip = skip - 1
+                skip = skip -1
               end
+
             end
+
         end
-      end
+
+      end # if - random
 
       @positions[@nextColumn]["y"] = y + post.dimensions(:size => size).height + 7
 
@@ -80,8 +159,6 @@ module PostsHelper
               @nextColumn = key if @nextColumn == 3
           end
         end
-
-
       end
 
 
@@ -104,6 +181,14 @@ module PostsHelper
 
   end
 
+
+
+  def disableIfSmallerThan(options={})
+    geo = @post.dimensions(:size => options[:size])
+
+    "disabled='disabled'" if geo.width < options[:width] or geo.height < options[:height]
+
+  end
 
   private
 
