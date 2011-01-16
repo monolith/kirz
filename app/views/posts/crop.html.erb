@@ -4,8 +4,19 @@
   <%= javascript_include_tag "jquery-1.4.4.min" %>
   <%= javascript_include_tag "jquery.Jcrop.min" %>
 
-
   <script type="text/javascript" charset="utf-8">
+  // for control submit button
+  var badLargeCrop = false;
+  var badSmallCrop = false;
+
+  function checkCropButton() {
+    if (badLargeCrop == true || badSmallCrop == true) {
+      document.getElementById('post_submit').disabled = true;
+    } else {
+      document.getElementById('post_submit').disabled = false;
+    }
+  }
+
   $(window).load(function() {
     var api = $.Jcrop('#largecropbox', {
       onChange: update_largecrop,
@@ -67,17 +78,35 @@
     });
 
 
+
   });
 
   function update_largecrop(coords) {
     var rx = 100/coords.w;
     var ry = 100/coords.h;
-    var ratio = <%= @post.image_geometry(:original).width %> / <%= @post.image_geometry(:largecrop).width %>;
+    var ratio = <%=  @post.image_geometry(:original).width %> / <%= @post.image_geometry(:largecrop).width %>;
     $("#largecrop_x").val(Math.round(coords.x * ratio));
     $("#largecrop_y").val(Math.round(coords.y * ratio));
     $("#largecrop_w").val(Math.round(coords.w * ratio));
     $("#largecrop_h").val(Math.round(coords.h * ratio));
     $("#largecrop_resize_width").val(Math.round(coords.w));
+
+    // check width and height
+
+    if ((coords.w == 250 || coords.w == 507 || coords.w == 764 ) && (coords.h == 184 || coords.h == 375 || coords.h == 566 || coords.h == 757 )) {
+      badLargeCrop = false;
+      checkCropButton();
+//      document.getElementById('post_submit').disabled = false;
+
+    } else {
+       badLargeCrop = true;
+      checkCropButton();
+
+//        document.getElementById('post_submit').disabled = true;
+
+    }
+
+
   }
 
 
@@ -89,6 +118,23 @@
     $("#smallcrop_y").val(Math.round(coords.y * ratio));
     $("#smallcrop_w").val(Math.round(coords.w * ratio));
     $("#smallcrop_h").val(Math.round(coords.h * ratio));
+
+    // check width and height
+
+    if ((coords.w == 250) && (coords.h == 184 || coords.h == 375)) {
+      badSmallCrop = false;
+      checkCropButton();
+
+//      document.getElementById('post_submit').disabled = false;
+
+    } else {
+      badSmallCrop = true;
+      checkCropButton();
+
+//        document.getElementById('post_submit').disabled = true;
+
+    }
+
   }
 
 
@@ -136,6 +182,7 @@
           <%= f.hidden_field attribute, :id => attribute %>
         <% end %>
         <p><%= f.submit "Crop" %></p>
+        <p>Crop button will be enabled only when both crops have proper sizes.  Use the size buttons to get the right size.</p>
       <% end %>
     </td>
   </tr>

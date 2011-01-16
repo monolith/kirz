@@ -1,5 +1,10 @@
 <% title "home" %>
+
+<% content_for(:head) do %>
+    <% javascript :defaults %>
+
 <%# javascript :defaults, 'endless' %>
+<% end %>
 
 <div id=time>
   <p>the latest post was made<br/>on <%= Post.last_post_time %></p>
@@ -13,6 +18,8 @@
     <%= gallery %>
   </div>
 </div>
+
+
 
 <!---
 

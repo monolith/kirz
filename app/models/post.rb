@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   # :small_landscape => "250x184#", :small_portfolio => "250x375#", :thumb => "128x>", :largecrop_landscape => "507x375#", :largecrop_portfolio => "507x566#"
   has_attached_file :image, :styles => {  :small => {:geometry => "250x>", :processors => [:smallcropper] },
                                           :thumb => "128x>",
-                                          :largecrop =>  {:geometry => "764x767", :processors => [:largecropper]} },
+                                          :largecrop =>  {:geometry => "764x>", :processors => [:largecropper]} },
                     :url  => "/assets/posts/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/assets/posts/:id/:style/:basename.:extension"
 

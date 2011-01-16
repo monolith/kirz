@@ -147,10 +147,8 @@ module PostsHelper
 
       @positions.each_pair do |key, position|
         if @positions[@nextColumn]["y"] > position["y"]
-          @longest = @nextColumn # for pagination
           @nextColumn = key
         elsif @positions[@nextColumn]["y"] == position["y"]
-          @longest = @nextColumn # for pagination
 
           case key
             when "column1"
@@ -168,13 +166,13 @@ module PostsHelper
     # pagination
 
     tmp <<   "<div id=pagination style='position: absolute; top:"
-    tmp << (@positions[@longest]["y"] + 7).to_s << "px;'>"
+    tmp << (@positions["column1"]["y"] + 7).to_s << "px;'>"
 
     tmp << will_paginate(@posts) if @posts.total_entries > @posts.count # checks first if pagination is needed
 #     the check needed here in order to avoid an error (this is a workaround)
 
     tmp << "</div><div id=loading style='position: absolute; top:"
-    tmp << (@positions[@longest]["y"] + 27).to_s << "px;'></div>"
+    tmp << (@positions["column1"]["y"] + 27).to_s << "px;'></div>"
 
 
     tmp

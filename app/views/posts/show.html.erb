@@ -1,5 +1,20 @@
 <% title @post.formatted_created_at_date %>
-<% javascript :defaults %>
+
+<% content_for(:head) do %>
+
+    <% javascript :defaults %>
+
+    <script type="text/javascript">
+      (function() {
+      var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'http://widgets.digg.com/buttons.js';
+      s1.parentNode.insertBefore(s, s1);
+      })();
+    </script>
+
+<% end %>
 
 <% if logged_in? %>
   <table>
