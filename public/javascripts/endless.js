@@ -29,7 +29,23 @@ function checkScroll() {
       tmp[1] = tmp[1] + "&";
     }
 
-    new Ajax.Request(tmp[0] + '.js?'+ tmp[1] + 'page=' + currentPage, {asynchronous:true, evalScripts:true, method:'get'});
+    var column1_x = document.getElementById('column1_x').value;
+    var column1_y = document.getElementById('column1_y').value;
+
+    var column2_x = document.getElementById('column2_x').value;
+    var column2_y = document.getElementById('column2_y').value;
+
+    var column3_x = document.getElementById('column3_x').value;
+    var column3_y = document.getElementById('column3_y').value;
+
+    var nextColumn = document.getElementById('nextColumn').value;
+
+    var positions = "&column1_x=" + column1_x + "&column1_y=" + column1_y;
+    positions = positions + "&column2_x=" + column2_x + "&column2_y=" + column2_y;
+    positions = positions + "&column3_x=" + column3_x + "&column3_y=" + column3_y;
+    positions = positions + "&nextColumn=" + nextColumn;
+
+    new Ajax.Request(tmp[0] + '.js?'+ tmp[1] + 'page=' + currentPage + positions, {asynchronous:true, evalScripts:true, method:'get'});
 
   } else {
     if (!$('complete')) {
@@ -48,7 +64,7 @@ Position.GetWindowSize = function(w) {
 }
 
 function nearBottomOfPage(){
-  var last = $$(".thumb").last().viewportOffset()[1]; // top y coordinate of last thumb
+  var last = $$(".thumb").last().viewportOffset()[1];
   var below_window = last - Position.GetWindowSize().height;
   return below_window < 250; // number of pixels below bottom of browser.. next page will be loaded if true
 }

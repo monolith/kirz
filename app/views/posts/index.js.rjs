@@ -2,17 +2,34 @@ page[:pagination].hide
 page.replace_html :loading, :text => "Loading more page results..."
 
 
+    @positions = {  "column1" => { "x" => params["column1_x"].to_i, "y" => params["column1_y"].to_i },
+                  "column2" => { "x" => params["column2_x"].to_i, "y" => params["column2_y"].to_i },
+                  "column3" => { "x" => params["column3_x"].to_i, "y" => params["column3_y"].to_i }
+                }
+    @nextColumn = params["nextColumn"]
 
-  @column.each_with_index do |posts, index|
-          page.insert_html :bottom,
-                           "column_#{ index+1 }",
-                           :partial => 'post', :collection => posts
-  end
+
+page.insert_html :bottom, 'gallery', placeImages
+
+# replace positions on page
+
+page["column1_x"].value = @positions['column1']['x']
+page["column1_y"].value = @positions['column1']['y']
+
+page["column2_x"].value = @positions['column2']['x']
+page["column2_y"].value = @positions['column2']['y']
+
+page["column3_x"].value = @positions['column3']['x']
+page["column3_y"].value = @positions['column3']['y']
+
+page["nextColumn"].value = @nextColumn
 
 if @posts.total_pages > @posts.current_page
   page.call 'checkScroll'
 else
   page[:loading].hide
-  page.insert_html :after, :loading, :text => "<div id=complete>That's it folks!</div>"
+
+  page.insert_html :bottom, 'gallery', :text => "<div id=complete style='position: absolute; top:" + (@positions["column1"]["y"] + 7).to_s + "px;'>That's it folks!</div>"
+
 end
 

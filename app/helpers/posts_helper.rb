@@ -9,9 +9,39 @@ module PostsHelper
                 }
     @nextColumn = "column1"
 
-    tmp = ""
-    @longest = "column1"
 
+    tmp = placeImages
+    # pagination
+
+    tmp <<   "<div id=pagination style='position: absolute; top:"
+    tmp << (@positions["column1"]["y"] + 7).to_s << "px;'>"
+
+    tmp << will_paginate(@posts) if @posts.total_entries > @posts.count # checks first if pagination is needed
+#     the check needed here in order to avoid an error (this is a workaround)
+
+    tmp << "</div><div id=loading style='position: absolute; top:"
+    tmp << (@positions["column1"]["y"] + 27).to_s << "px;'></div>"
+
+
+    tmp << "<input type=hidden id='column1_x' value='#{@positions['column1']['x']}'>"
+    tmp << "<input type=hidden id='column1_y' value='#{@positions['column1']['y']}'>"
+
+    tmp << "<input type=hidden id='column2_x' value='#{@positions['column2']['x']}'>"
+    tmp << "<input type=hidden id='column2_y' value='#{@positions['column2']['y']}'>"
+
+    tmp << "<input type=hidden id='column3_x' value='#{@positions['column3']['x']}'>"
+    tmp << "<input type=hidden id='column3_y' value='#{@positions['column3']['y']}'>"
+
+    tmp << "<input type=hidden id='nextColumn' value='#{@nextColumn}'>"
+
+    return tmp
+  end
+
+
+
+  def placeImages
+
+    tmp = ""
     skip = 0            # to make sure two don't appear close to each other
 
     @posts.each do |post|
@@ -133,12 +163,14 @@ module PostsHelper
 
       @positions[@nextColumn]["y"] = y + post.dimensions(:size => size).height + 7
 
-      tmp << link_to( image_tag( post.image.url(size),
-                                  :class => "newthumb",
-                                  :style=>"position:absolute; top: #{y}px;left: #{x}px;"
-                              ),
-                              post_path(post)
-                     )
+#      tmp << link_to( image_tag( post.image.url(size),
+#                                  :class => "thumb",
+#                                  :style=>"position:absolute; top: #{y}px;left: #{x}px;"
+#                              ),
+#                              post_path(post)
+#                     )
+
+     tmp << render(:partial => 'post', :locals => {:post => post, :size => size, :x => x, :y => y})
 
       # adjust next column to make sure any one column doesn't get much longer than another
       # picks shortest column for next post
@@ -162,24 +194,9 @@ module PostsHelper
 
     end
 
-
-    # pagination
-
-    tmp <<   "<div id=pagination style='position: absolute; top:"
-    tmp << (@positions["column1"]["y"] + 7).to_s << "px;'>"
-
-    tmp << will_paginate(@posts) if @posts.total_entries > @posts.count # checks first if pagination is needed
-#     the check needed here in order to avoid an error (this is a workaround)
-
-    tmp << "</div><div id=loading style='position: absolute; top:"
-    tmp << (@positions["column1"]["y"] + 27).to_s << "px;'></div>"
-
-
-    tmp
+    return tmp
 
   end
-
-
 
   def disableIfSmallerThan(options={})
     geo = @post.dimensions(:size => options[:size])
@@ -187,6 +204,7 @@ module PostsHelper
     "disabled='disabled'" if geo.width < options[:width] or geo.height < options[:height]
 
   end
+
 
   private
 

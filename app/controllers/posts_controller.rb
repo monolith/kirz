@@ -20,7 +20,6 @@ class PostsController < ApplicationController
       @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
     end
 
-    create_columns
     render :index
   end
 
@@ -101,7 +100,7 @@ class PostsController < ApplicationController
       @posts = Post.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 12, :order => "ID desc"
     end
 
-    create_columns
+#    create_columns
     render :index
   end
 
@@ -110,7 +109,7 @@ class PostsController < ApplicationController
     category = Category.find_by_name params[:name]
     @posts = category.posts.paginate :page => params[:page], :per_page => 12, :order => "ID desc"
 
-    create_columns
+ #   create_columns
     render :index
   end
 
@@ -156,7 +155,7 @@ class PostsController < ApplicationController
         flash[:notice] = "Please try another search.  Nothing found for: " + @query
       end
 
-      create_columns
+ #     create_columns
       render :index
     end
   end

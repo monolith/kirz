@@ -1,9 +1,7 @@
 <% title "home" %>
 
 <% content_for(:head) do %>
-    <% javascript :defaults %>
-
-<%# javascript :defaults, 'endless' %>
+  <% javascript :defaults, 'endless' %>
 <% end %>
 
 <div id=time>
@@ -18,22 +16,4 @@
     <%= gallery %>
   </div>
 </div>
-
-
-
-<!---
-
-  <table class=main>
-    <tr>
-      <% @column.each_with_index do |posts, index| %>
-        <td valign=top>
-          <div id="column_<%= index+1 %>">
-              <%= render :partial => 'post', :collection => posts  %>
-          </div>
-        </td>
-      <% end %>
-    </tr>
-  </table>
-
-//-->
 
