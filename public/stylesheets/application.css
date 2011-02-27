@@ -234,15 +234,17 @@ table.main td {
 
 .thumb img {
   border: 0;
-  filter:alpha(opacity=85);
+/*  filter:alpha(opacity=85);
   -moz-opacity: 0.85;
   opacity: 0.85;
+  */
 }
 
 .thumb img:hover {
-  filter:alpha(opacity=100);
+/*  filter:alpha(opacity=100);
   -moz-opacity: 1;
   opacity: 1;
+  */
 }
 
 a {

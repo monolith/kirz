@@ -88,10 +88,11 @@
 
         <table class=main >
           <tr>
+
             <% @column.each_with_index do |posts, index| %>
               <td valign=top>
                 <div id="column_<%= index+1 %>">
-                    <%= render :partial => 'post', :collection => posts, :locals => { :size => :thumb }  %>
+                    <%= render :partial => 'post', :collection => posts, :locals => { :size => :thumb, :positioning => false }  %>
                 </div>
               </td>
             <% end %>
