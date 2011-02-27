@@ -1,8 +1,12 @@
 <% form_for @category do |f| %>
   <%= f.error_messages %>
   <p>
+    <%= f.label :menu_order %> (number)<br />
+    <%= f.text_field :menuorder %><br /><br />
+
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>
+

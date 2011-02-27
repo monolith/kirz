@@ -1,8 +1,15 @@
 <% title "Categories" %>
 
-<table>
+<table cellspacing=0 cellpadding=10 border=1>
+    <tr>
+      <th>Order</th>
+      <th>Name</th>
+      <th colspan=2>Manage</th>
+    </tr>
+
   <% @categories.each do |category| %>
     <tr>
+      <td><%=h category.menuorder %></td>
       <td><%=h category.name %></td>
       <td><%= link_to "Edit", edit_category_path(category) %></td>
       <td><%= link_to "Delete", category_path(category), :method => :delete, :confirm => "Sure? Cannot undo!" %></td>
