@@ -344,3 +344,13 @@ input[type="text"], input[type="password"], input[type="checkbox"], textarea {
    font-size: xx-small;
 }
 
+.rollover {
+
+  background:url(/images/ROLLOVER_box.png) no-repeat;
+
+  width: 127px;
+  height: 59px;
+  padding: 5px;
+
+}
+

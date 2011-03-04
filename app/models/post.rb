@@ -133,6 +133,12 @@ class Post < ActiveRecord::Base
     !largecrop_x.blank? && !largecrop_y.blank? && !largecrop_w.blank? && !largecrop_h.blank?
   end
 
+  def short_description
+    tmp = description[0..41]
+    tmp = tmp + "..." if description.size > 41
+    tmp
+  end
+
 
   private
 
