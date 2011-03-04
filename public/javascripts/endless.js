@@ -64,8 +64,11 @@ Position.GetWindowSize = function(w) {
 }
 
 function nearBottomOfPage(){
-  var last = $$(".thumb").last().viewportOffset()[1];
-  var below_window = last - Position.GetWindowSize().height;
+//  var last = $$(".thumb").last().viewportOffset()[1];
+//  var below_window = last - Position.GetWindowSize().height;
+
+  var next = $('nextColumn').value + "_y";
+  var below_window = parseInt($(next).value) - Position.GetWindowSize().height;
   return below_window < 250; // number of pixels below bottom of browser.. next page will be loaded if true
 }
 
