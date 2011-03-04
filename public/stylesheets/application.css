@@ -352,5 +352,13 @@ input[type="text"], input[type="password"], input[type="checkbox"], textarea {
   height: 59px;
   padding: 5px;
 
+  visibility:hidden;
+
+  float: top;
+  line-height:normal;
+
+  filter:alpha(opacity=90);
+  -moz-opacity: 0.90;
+  opacity: 0.90;
 }
 
