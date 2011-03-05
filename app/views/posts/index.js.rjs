@@ -1,5 +1,5 @@
 page[:pagination].hide
-page.replace_html :loading, :text => "Loading more page results..."
+page.replace_html :loading, :text => "Loading more..."
 
 
     @positions = {  "column1" => { "x" => params["column1_x"].to_i, "y" => params["column1_y"].to_i },

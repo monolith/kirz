@@ -9,6 +9,12 @@ var cycle = 0;
 function checkScroll() {
   cycle++; // silly hack
   if (nearBottomOfPage() && Ajax.activeRequestCount == 0 && !$('complete') && cycle > 1) {
+
+  var next = $('nextColumn').value + "_y";
+  var scroll = document.viewport.getScrollOffsets()[1];
+
+  var below_window = parseInt($(next).value) - scroll;
+
     currentPage++;
     var url = new String();
     url = document.URL;
@@ -67,9 +73,13 @@ function nearBottomOfPage(){
 //  var last = $$(".thumb").last().viewportOffset()[1];
 //  var below_window = last - Position.GetWindowSize().height;
 
-  var next = $('nextColumn').value + "_y";
-  var below_window = parseInt($(next).value) - Position.GetWindowSize().height;
-  return below_window < 250; // number of pixels below bottom of browser.. next page will be loaded if true
+  var next = parseInt($($('nextColumn').value + "_y").value); // y coordinate of next image position
+  var scroll = document.viewport.getScrollOffsets()[1]; // top of scroll bar
+  var bottom = document.viewport.getHeight() + scroll;
+
+  var below_window = next - bottom;  //
+
+  return below_window < 500; // number of pixels below bottom of browser.. next page will be loaded if true
 }
 
 function $_GET(q,s) {
