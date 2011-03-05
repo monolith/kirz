@@ -76,10 +76,11 @@ function nearBottomOfPage(){
   var next = parseInt($($('nextColumn').value + "_y").value); // y coordinate of next image position
   var scroll = document.viewport.getScrollOffsets()[1]; // top of scroll bar
   var bottom = document.viewport.getHeight() + scroll;
+  var gap = document.viewport.getHeight() / 3; // allowable distance between bottom and where next is
 
-  var below_window = next - bottom;  //
+  var distance = next - (bottom + gap);
 
-  return below_window < 500; // number of pixels below bottom of browser.. next page will be loaded if true
+  return distance < 0; // next page will be loaded if true
 }
 
 function $_GET(q,s) {
