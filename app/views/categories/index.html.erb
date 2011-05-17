@@ -12,7 +12,7 @@
       <td><%=h category.menuorder %></td>
       <td><%=h category.name %></td>
       <td><%= link_to "Edit", edit_category_path(category) %></td>
-      <td><%= link_to "Delete", category_path(category), :method => :delete, :confirm => "Sure? Cannot undo!" %></td>
+      <td><%= link_to "Delete", category_path(category), :method => :delete, :confirm => "Sure? This will also delete ALL posts in this category! CANNOT UNDO!!!" %></td>
     </tr>
   <% end %>
 </table>

@@ -2,7 +2,7 @@ class Category < ActiveRecord::Base
   validates_uniqueness_of   :name, :menuorder
   attr_accessible :name, :menuorder
 
-  has_many :posts
+  has_many :posts, :dependent => :destroy
 
   def self.menu_items
     Category.find :all, :order => "menuorder"
