@@ -4,11 +4,11 @@ class Product < ActiveRecord::Base
 
 
   def price
-    75
+    rand(200) + 1
   end
 
   def quantity
-    5
+    rand(10) + 1
   end
 
   def name
