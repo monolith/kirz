@@ -45,6 +45,11 @@ class PostsController < ApplicationController
     if @post.save
       flash[:notice] = "Successfully created post."
 
+      if params[:create_product]
+        @post.create_product
+      end
+
+
       if params[:post][:image].blank?
         redirect_to root_url
       else
@@ -65,6 +70,9 @@ class PostsController < ApplicationController
     if @post.update_attributes(params[:post])
       flash[:notice] = "Successfully updated post."
 
+      if params[:create_product]
+        @post.create_product
+      end
 
       if params[:post][:image].blank?
         redirect_to root_url

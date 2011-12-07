@@ -1,3 +1,7 @@
 #!/usr/bin/env ruby
+
+require 'thread' # workaround latest rubygems, http://stackoverflow.com/questions/5176782/uninitialized-constant-activesupportdependenciesmutex-nameerror
+
 require File.expand_path('../../config/boot',  __FILE__)
 require 'commands/server'
+

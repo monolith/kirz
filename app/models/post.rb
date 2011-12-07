@@ -16,9 +16,32 @@ class Post < ActiveRecord::Base
 
 
   belongs_to :category
+  has_one    :product
 
-  attr_accessor :largecrop_x, :largecrop_y, :largecrop_w, :largecrop_h, :largecrop_resize_width, :smallcrop_x, :smallcrop_y, :smallcrop_w, :smallcrop_h
-  attr_accessible :description, :image, :tag_list, :category_id, :largecrop_x, :largecrop_y, :largecrop_w, :largecrop_h, :largecrop_resize_width, :smallcrop_x, :smallcrop_y, :smallcrop_w, :smallcrop_h
+
+  attr_accessor :largecrop_x,
+                :largecrop_y,
+                :largecrop_w,
+                :largecrop_h,
+                :largecrop_resize_width,
+                :smallcrop_x,
+                :smallcrop_y,
+                :smallcrop_w,
+                :smallcrop_h
+
+  attr_accessible :description,
+                  :image,
+                  :tag_list,
+                  :category_id,
+                  :largecrop_x,
+                  :largecrop_y,
+                  :largecrop_w,
+                  :largecrop_h,
+                  :largecrop_resize_width,
+                  :smallcrop_x,
+                  :smallcrop_y,
+                  :smallcrop_w,
+                  :smallcrop_h
 
   after_update :reprocess_image, :if => :cropping?
 
@@ -139,6 +162,10 @@ class Post < ActiveRecord::Base
     tmp
   end
 
+
+  def product?
+    product ? true : false
+  end
 
   private
 

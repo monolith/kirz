@@ -1,0 +1,42 @@
+<% title "store" %>
+
+<% items = 0 %>
+<% @products.each do |product| %>
+    <% items = items + 1 %>
+    <% if items == 1 %>
+      <!-- start row -->
+    	<div class="itemWrapper">
+
+    <% end %>
+        <!-- start item -->
+			  <div class="itemHolder">
+  		    <div class="centerPlace">
+  			    <div class="thumbFrame">
+              <%= link_to image_tag(product.post.image.url(:largecrop), :class => "itemThumb"), post_path(product.post) %>
+  				  </div>
+  			  </div>
+			    <div class="descriptionWrapper">
+			      <div class="descriptionTitle">
+              <%= link_to product.name, post_path(product.post) %>
+				    </div>
+				    <div class="description">
+				      <%= product.description %>
+				    </div>
+				    <div class="descriptionPrice">
+				      $<%= product.price %>
+				    </div>
+		      </div>
+		    </div>
+        <!-- end item -->
+
+    <% if items == 3 %>
+      <% items = 0 %>
+
+
+				</div>
+        <!-- end row -->
+
+    <% end %>
+
+<% end %>
+

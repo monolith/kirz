@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110227185106) do
+ActiveRecord::Schema.define(:version => 20111204154422) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(:version => 20110227185106) do
     t.integer  "category_id"
     t.boolean  "delta",              :default => true, :null => false
     t.boolean  "largecrop",          :default => true
+  end
+
+  create_table "products", :force => true do |t|
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "taggings", :force => true do |t|

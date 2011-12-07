@@ -11,6 +11,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
   map.resources :posts
+  map.resources :products
+
+  map.store '/store', :controller => 'store', :action => 'index'
 
   map.resources :categories #, :has_many => [:posts]
 

@@ -22,6 +22,11 @@
     <%= f.file_field :image %>
 
 
+    <% if @post.product %>
+      <p><%= link_to "Go to product page", product_path(@post.product) %></p>
+    <% else %>
+      <p><%= check_box_tag "create_product" %> Create product</p>
+    <% end %>
 
   <p><%= f.submit "Submit" %></p>
 <% end %>

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <title>Alex R. Kirzhner - <%= h(yield(:title)) %></title>
+    <%= stylesheet_link_tag 'store' %>
+    <%= yield(:head) %>
+
+
+  </head>
+	<body>
+
+	  <div id="canvas">
+		  <div id="bannerWrap">
+			  <a href="index.html"><img id="banner" src="/images/store/store_logo.png"></a>
+		  </div>
+
+			<div id="shopmenuwrap">
+
+				<div id="shopmenu">
+				  <a id="shopviewall" href="index.html">view all</a>
+				  <a id="shopprints" href="index.html">prints</a>
+				  <a id="shoporiginalart" href="index.html">original art</a>
+				</div>
+
+				<div id="shopcart">
+				  <a id="cartlink" href="index.html">view cart (0)</a>
+				</div>
+
+        <div style="clear:both;"></div>
+      </div>
+
+      <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, sanitize(msg), :id => "flash_#{name}" %>
+      <%- end -%>
+
+      <%= yield %>
+
+      <div style="clear:both;"></div>
+
+		</div>
+
+	</body>
+</html>
+

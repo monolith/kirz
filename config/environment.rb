@@ -4,6 +4,9 @@
 RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
+
+require 'thread' # workaround latest rubygems, http://stackoverflow.com/questions/5176782/uninitialized-constant-activesupportdependenciesmutex-nameerror
+
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|

@@ -1,0 +1,256 @@
+
+/* --- overall--------------------------------------------------------------------------- */
+
+html {
+	height: 100%;
+	}
+
+img {
+	border: 0 none;
+	-ms-interpolation-mode: bicubic;
+	}
+
+body {
+	background-image:url('/images/store/store_bg.jpg');
+	background-repeat:repeat-x;
+	border: 0px; height: 100%; margin: 0px; padding: 0px;
+	font-family: 'Futura', 'Lucida Sans Unicode', 'Lucida Grande', Tahoma, sans-serif;
+	font-size: 12px;
+	line-height: 1.8em;
+	color: #626262;
+	}
+
+
+/* --- generic ------------------------------------------------------------------------- */
+
+#flash_notice, #flash_error {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+#flash_error {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+
+
+/* --- canvas--------------------------------------------------------------------------- */
+
+
+#canvas {
+	width: 729px;
+	background-color: #fff;
+	margin-top: 24px;
+	padding: 13px 0px 37px 0px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	-webkit-box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .3);
+	-moz-box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .3);
+	box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, .3);
+
+	position: relative;
+}
+
+/* --- logo banner--------------------------------------------------------------------------- */
+
+
+#bannerWrap	{
+	line-height: 0;
+}
+
+#banner	{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+		}
+
+
+/* --- shop menu--------------------------------------------------------------------------- */
+
+
+#shopmenuwrap {
+	background-color: #e0e0de;
+	width: 630px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top:5px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border-bottom: 1px #979797 dotted;
+	border-top: 1px #979797 dotted;
+	}
+
+#shopmenuwrap a{color:#000;text-decoration:none;}
+#shopmenuwrap a:hover{color:#777;text-decoration:none;}
+
+
+#shopmenu	{
+	float:left;
+	background-color: #e0e0de;
+	}
+
+#shopcart {
+	float:right;
+	background-color: #e0e0de;
+	}
+
+#shopviewall	{
+	padding-left: 14px;
+	padding-right: 14px;
+	border-right: 1px white dotted;
+	}
+
+#shopprints	{
+	padding-left: 14px;
+	padding-right: 14px;
+	border-right: 1px white dotted;
+	}
+
+#shoporiginalart	{
+	padding-left: 14px;
+	padding-right: 14px;
+	border-right: 1px white dotted;
+	}
+
+#cartlink	{
+	padding-left: 14px;
+	padding-right: 8px;
+	}
+
+
+
+/* --- shop items-------------------------------------------------------------------------- */
+
+.itemWrapper	{
+  	width: 630px;
+    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 0px;
+    position: relative;
+
+	}
+
+.itemHolder	{
+  margin: 0px;
+  padding: 0px;
+	padding-top:20px;
+	width: 208px;
+	min-height:320px;
+	border: 1px #e4e4e4 dotted;
+
+  float: left;
+
+	}
+
+.centerPlace{
+  padding: 0px;
+  margin: 0px;
+	height: 232px;
+	vertical-align: middle;
+	position: relative;
+
+}
+
+
+
+
+/*.thumbFrame	{
+	margin:0px auto;
+	width: 161px;
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .3);
+	-moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .3);
+	box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .3);
+	webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 4px;
+} */
+
+
+.itemThumb {
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .3);
+	-moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .3);
+	box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .3);
+	webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 4px;
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+	vertical-align: text-middle;
+
+  max-width: 161px;
+  max-height: 216px;
+
+}
+
+
+
+
+img.itemThumb:hover {
+	-webkit-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, .3);
+	-moz-box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, .3);
+	box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, .3);
+}
+
+
+									/*
+
+									img.itemThumb {
+									opacity:0.8;
+									filter:alpha(opacity=80);  For IE8 and earlier */
+									}
+									img.itemThumb:hover
+									{
+									opacity:1.0;
+									filter:alpha(opacity=100); /* For IE8 and earlier */
+									}
+
+
+
+
+.descriptionWrapper	{
+	min-height: 100px;
+	padding-top: 5px;
+	/* --- position: absolute; bottom: 0; ---*/
+	}
+
+.descriptionTitle {
+	color: #000;
+	font-size: 10pt;
+	margin: 0px;
+	text-align: center;
+	text-transform: uppercase;
+
+}
+
+.descriptionTitle a{color:#000;text-decoration:none;}
+.descriptionTitle a:hover{color:#000;text-decoration:none;}
+
+
+.description	{
+	font-family: 'Times', 'Times New Roman', 'Serif';
+	font-style: italic;
+	margin: 0px;
+	max-width:200px;
+	text-align: center;
+}
+
+.descriptionPrice {
+	color: #000;
+	letter-spacing: 1px;
+	margin: 0px;
+	text-align: center;
+
+}
+
