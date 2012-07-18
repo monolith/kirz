@@ -13,14 +13,18 @@ class PostsController < ApplicationController
 
     last_post = Post.last
 
-    if last_post
-      @category = last_post.category
-      @posts = @category.posts.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
-    else
-      @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
-    end
 
-    render :index
+
+    redirect_to '/categorized/' + last_post.category.name
+
+#    if last_post
+#      @category = last_post.category
+#      @posts = @category.posts.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
+#    else
+#      @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => "ID desc"
+#    end
+
+#    render :index
   end
 
   def show
@@ -51,7 +55,7 @@ class PostsController < ApplicationController
 
 
       if params[:post][:image].blank?
-        redirect_to root_url
+        redirect_to posts_path
       else
         render :action => "crop"
       end
@@ -75,7 +79,7 @@ class PostsController < ApplicationController
       end
 
       if params[:post][:image].blank?
-        redirect_to root_url
+        redirect_to posts_path
       else
         render :action => "crop"
       end
@@ -89,7 +93,7 @@ class PostsController < ApplicationController
 
       if @post.destroy
         flash[:notice] = "The post was deleted."
-        redirect_to root_url
+        redirect_to posts_path
       else
         flash[:error] = "Something happened, could not destroy"
         render :action => :show
